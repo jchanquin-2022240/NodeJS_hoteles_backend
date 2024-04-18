@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const EventsSchema = mongoose.Schema({
+const EventSchema = mongoose.Schema({
     nameEvent: {
         type: String,
         required: [true, 'The event need one name']
@@ -36,3 +36,5 @@ const EventsSchema = mongoose.Schema({
 
 
 })
+
+export default mongoose.model('Event', EventSchema)
