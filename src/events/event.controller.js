@@ -39,3 +39,19 @@ export const eventsGet = async(req, res) => {
     })
     
 }
+
+
+export const eventDelete = async(req, res) => {
+    const { id } = req.params;
+
+    const event = await Event.findByIdAndUpdate(id, { state: false});
+    const eventAuthentic = await Event.findById(id);
+
+
+    res.status(200).json({
+        msg: 'Event Removed',
+        event,
+        eventAuthentic
+
+    })
+}
