@@ -5,7 +5,14 @@ export const eventsPost = async (req, res) => {
     const { nameEvent, descriptionEvent, date, typeEvent,  resources, additionalServices } = req.body;
 
     
-    const event = new Event ({nameEvent, descriptionEvent, date, typeEvent,  resources, additionalServices});
+    const event = new Event({
+        nameEvent,
+        descriptionEvent,
+        date,
+        typeEvent,
+        resources, 
+        additionalServices
+    });
 
     await event.save();
 
@@ -13,6 +20,11 @@ export const eventsPost = async (req, res) => {
         event
     })
 
+}
+
+export const eventPut = async(req, res)  => {
+    const { id } = req.params;
+    const { _id, state, ...resto} = req.body;
 }
 
 export const eventsGet = async(req, res) => {

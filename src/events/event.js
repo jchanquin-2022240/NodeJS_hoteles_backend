@@ -22,11 +22,11 @@ const EventSchema = mongoose.Schema({
         required: [true, 'The event need one type']
     },
 
-    resources: {
+    resources: [{
         nombre: String,
         cantidad: Number
-    },
-
+    }],
+    
     additionalServices: [String],
 
     state: {
