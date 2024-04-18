@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { eventsPost } from "./event.controller.js";
+import { eventsGet, eventsPost } from "./event.controller.js";
 
 const router = Router();
 
@@ -13,6 +13,7 @@ router.post(
         check("typeEvent", "The event need one type").not().isEmpty(),
     ], eventsPost)
 
+router.get("/", eventsGet)
 
 
 

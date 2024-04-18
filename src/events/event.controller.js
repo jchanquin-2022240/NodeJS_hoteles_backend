@@ -14,3 +14,28 @@ export const eventsPost = async (req, res) => {
     })
 
 }
+
+export const eventsGet = async(req, res) => {
+    const { limite, desde} = req.query;
+    const query = {state: true};
+
+    const eventsList = await Event.find(query)
+            .skip(Number(desde))
+            .limit(Number(limite));
+
+        const totalEvents = await Event.countDocuments(query);
+
+        const eventsFormatted = eventsList.map(event => ({
+            nameEvent: event.nameEvent,
+            descriptionEvent: event.descriptionEvent,
+            date: event.date,
+            typeEvent: event.typeEvent,
+            resources: event.resources,
+            additionalServices: event.additionalServices,
+        }));
+    res.status(200).json({
+        total: totalEvents,
+        events: eventsFormatted
+    })
+    
+}
