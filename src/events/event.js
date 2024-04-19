@@ -23,8 +23,8 @@ const EventSchema = mongoose.Schema({
     },
 
     resources: [{
-        nombre: String,
-        cantidad: Number
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Resource'
     }],
     
     additionalServices: [String],
