@@ -1,6 +1,6 @@
 import { response } from "express";
-import Habitacion from './habitacion.model.js';
-import Reservacion from '../reservaciones/reservacion.model.js';
+import Habitacion from './bedrooms.model.js';
+import Reservacion from '../reservations/reservations.model.js';
 
 
 export const habitacionPost = async (req, res) => {
