@@ -61,11 +61,11 @@ export const getHotelsAvailable = async (req, res) => {
         const { nameHotel, description, installations, location, category, status } = req.query;
 
         const filter = {};
-        if (nameHotel) filter.nameHotel = { $regex: nameHotel, $options: 'i' }; 
-        if (description) filter.description = { $regex: description, $options: 'i' }; 
-        if (installations) filter.installations = { $regex: installations, $options: 'i' }; 
-        if (location) filter.location = { $regex: location, $options: 'i' }; 
-        if (category) filter.category = { $regex: category, $options: 'i' }; 
+        if (nameHotel) filter.nameHotel = { $regex: nameHotel, $options: 'i' };
+        if (description) filter.description = { $regex: description, $options: 'i' };
+        if (installations) filter.installations = { $regex: installations, $options: 'i' };
+        if (location) filter.location = { $regex: location, $options: 'i' };
+        if (category) filter.category = { $regex: category, $options: 'i' };
 
         if (status === undefined) filter.status = true;
 
@@ -76,15 +76,41 @@ export const getHotelsAvailable = async (req, res) => {
         res.status(200).json({ total, hotels });
     } catch (error) {
 
-        console.error('Error getting hotels:', error);
         res.status(500).json({ error: 'Error getting hotels' });
     }
 }
 
 export const updateHotel = async (req, res) => {
 
+    try {
+
+        const { id } = req.params;
+        const { _id, ...remain } = req.body;
+
+        await Hotel.findByIdAndUpdate(id, remain);
+
+        const hotel = await Hotel.findOne({ _id: id });
+
+        res.status(200).json({ msg: 'Hotel has been update', hotel })
+
+    } catch (error) {
+
+        res.status(500).json({ error: 'Error when updating hotel' });
+    }
 }
 
 export const deleteHotel = async (req, res) => {
+
+    try {
+
+        const { id } = req.params;
+
+        const hotel = await Hotel.findByIdAndUpdate(id, { status: false });
+
+        res.status(200).json({ msg: 'Hotel has been disable', hotel })
+    } catch (error) {
+
+        res.status(500).json({ error: 'Error when deleting hotel' });
+    }
 
 }

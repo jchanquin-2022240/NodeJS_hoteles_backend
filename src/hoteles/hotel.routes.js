@@ -26,4 +26,20 @@ router.get(
     getHotelsAvailable
 )
 
+router.put(
+    "/:id",
+    [
+        check("id", "This is an invalid id").isMongoId(),
+    ],
+    updateHotel
+)
+
+router.delete(
+    "/:id",
+    [
+        check("id", "This is an invalid id").isMongoId(),
+    ],
+    deleteHotel
+)
+
 export default router;
