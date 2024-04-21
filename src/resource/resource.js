@@ -15,7 +15,6 @@ const ResourceSchema = mongoose.Schema({
     versionResource: {
         type: String,
         required: [true, 'The resource needs a version'],
-        default: "v1",
         
     },
 
