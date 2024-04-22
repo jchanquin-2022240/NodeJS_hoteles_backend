@@ -16,8 +16,8 @@ export const registerUser = async (req, res) => {
         await user.save();
 
         res.status(201).json({ msg: "User successfully created", user })
-    } catch (e) {
-        console.log(e);
+    } catch (error) {
+
         res.status(500).json({ msg: "Error creating user" });
     }
 };
@@ -41,7 +41,6 @@ export const getUser = async (req = request, res = response) => {
         res.status(200).json({ total, users });
     } catch (error) {
 
-        console.error('Error getting users:', error);
         res.status(500).json({ error: 'Error getting users' });
     }
 }
@@ -51,20 +50,31 @@ export const updateUser = async (req, res = response) => {
     try {
 
         const { id } = req.params;
-        const { _id, ...remain } = req.body;
 
-        const salt = bcryptjs.genSaltSync();
-
-        user.password = bcryptjs.hashSync(password, salt);
-
-        await User.findByIdAndUpdate(id, remain);
+        const { _id, password, ...remain } = req.body;
 
         const user = await User.findOne({ _id: id });
 
-        res.status(200).json({ msg: 'Usesr has been update', user })
+        if (!user) {
+
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        if (password) {
+
+            const salt = bcryptjs.genSaltSync();
+            remain.password = bcryptjs.hashSync(password, salt);
+        }
+
+        await User.findByIdAndUpdate(id, remain);
+
+        const updatedUser = await User.findOne({ _id: id });
+
+        res.status(200).json({ msg: 'User has been updated', user: updatedUser });
 
     } catch (error) {
 
+        console.error('Error getting users:', error);
         res.status(500).json({ error: 'Error when updating user' });
     }
 }
