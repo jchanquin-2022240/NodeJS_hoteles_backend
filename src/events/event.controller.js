@@ -1,4 +1,4 @@
-import e, { response, request } from 'express';
+import  { response, request } from 'express';
 import Event from './event.js'
 import Resource from '../resource/resource.js';
 
@@ -57,10 +57,16 @@ export const eventsPost = async (req, res) => {
             }
         }
     }
+
+
+    const eventDate = new Date(date);
+
+  
+
     const event = new Event({
         nameEvent,
         descriptionEvent,
-        date,
+        date: eventDate,
         typeEvent,
         resources: updatedResources,
         additionalServices
@@ -142,6 +148,41 @@ export const eventsGet = async (req, res) => {
         events: events
     })
 
+}
+
+export const getEventForName = async(req, res) =>{
+    const { nameEvent } = req.body;
+    const query = { nameEvent: nameEvent }; 
+
+        const totalEvents = await Event.countDocuments(query);
+
+        const events = await Event.find(query)
+            .populate('resources')
+            .exec();
+
+        const formattedEvents = events.map(event => {
+            return {
+                nameEvent: event.nameEvent,
+                descriptionEvent: event.descriptionEvent,
+                date: event.date,
+                typeEvent: event.typeEvent,
+
+
+                resources: event.resources.map(resource => {
+                    return {
+                        nameResource: resource.nameResource,
+                        amount: resource.amount,
+                        price: resource.price
+                        
+                    };
+                })
+            };
+        });
+    
+    res.status(200).json({
+        total: totalEvents,
+        events: formattedEvents
+    })
 }
 
 
