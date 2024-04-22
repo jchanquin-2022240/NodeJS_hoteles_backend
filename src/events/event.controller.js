@@ -1,4 +1,4 @@
-import { response, request } from 'express';
+import e, { response, request } from 'express';
 import Event from './event.js'
 import Resource from '../resource/resource.js';
 
@@ -75,8 +75,46 @@ export const eventsPost = async (req, res) => {
 }
 
 export const eventPut = async (req, res) => {
-    const { id } = req.params;
-    const { _id, state, ...resto } = req.body;
+    const { _id, state, resources, nameEvent  ,...resto } = req.body;
+
+    const updatedResources = [];
+
+    const event = await Event.findOne({  nameEvent})
+
+    const eventLast = await Event.findByIdAndUpdate(event._id, resto)
+
+    const eventAfter = req.body;
+
+    Object.assign(event, resto);
+    await event.save();
+
+    if(resources && Array.isArray(resources)){
+
+        for (const resource of resources) {
+
+            
+            const existingResource = await Resource.findOne({ nameResource: resource.nameResource, versionResource: resource.versionResource });
+            
+            if(existingResource){
+                
+               existingResource.nameResource = resource.nameResource  || existingResource.nameResource
+               existingResource.amount = resource.amount  || existingResource.amount
+               const extraMount = 50; 
+               existingResource.price = `Q${(resource.price * resource.amount + extraMount).toFixed(2)}`,
+               await existingResource.save();
+
+               updatedResources.push(existingResource);
+
+            }
+        
+        }   
+    }
+
+
+    res.status(200).json({
+        eventLast,
+        eventAfter
+    })
 }
 
 export const eventsGet = async (req, res) => {

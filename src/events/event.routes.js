@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { eventDelete, eventsGet, eventsPost } from "./event.controller.js";
+import { eventDelete, eventPut, eventsGet, eventsPost } from "./event.controller.js";
 
 const router = Router();
 
@@ -17,7 +17,7 @@ router.get("/", eventsGet)
 
 router.delete("/:id", [ check("id", "It is not an id not valid").isMongoId()], eventDelete)
 
-
+router.put("/", [check("nameEventUpdate", "You need the name  of the your event")],eventPut)
 
 
 
