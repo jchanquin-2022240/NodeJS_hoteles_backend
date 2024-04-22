@@ -75,11 +75,11 @@ export const eventsPost = async (req, res) => {
 }
 
 export const eventPut = async (req, res) => {
-    const { _id, state, resources, nameEvent  ,...resto } = req.body;
+    const { _id, state, resources, nameEventUpdate ,...resto } = req.body;
 
-    const updatedResources = [];
+    let updatedResources = [];
 
-    const event = await Event.findOne({  nameEvent})
+    const event = await Event.findOne({  nameEvent: nameEventUpdate })
 
     const eventLast = await Event.findByIdAndUpdate(event._id, resto)
 
@@ -93,18 +93,26 @@ export const eventPut = async (req, res) => {
         for (const resource of resources) {
 
             
-            const existingResource = await Resource.findOne({ nameResource: resource.nameResource, versionResource: resource.versionResource });
+            const existingResources = await Resource.find({ nameResource: resource.nameResourceUpdate, versionResource: resource.versionResourceUpdate});
             
-            if(existingResource){
-                
-               existingResource.nameResource = resource.nameResource  || existingResource.nameResource
-               existingResource.amount = resource.amount  || existingResource.amount
-               const extraMount = 50; 
-               existingResource.price = `Q${(resource.price * resource.amount + extraMount).toFixed(2)}`,
-               await existingResource.save();
+            if (existingResources.length > 0) {
+                for (const existingResource of existingResources) {
 
-               updatedResources.push(existingResource);
+                    if (existingResource.versionResource === resource.versionResourceUpdate) {
 
+                        existingResource.nameResource = resource.nameResource || existingResource.nameResource;
+
+                        existingResource.amount = resource.amount || existingResource.amount;
+
+                        const extraMount = 50;
+
+                        existingResource.price = `Q${(resource.price * resource.amount + extraMount).toFixed(2)}`;
+
+                        await existingResource.save();
+
+                        updatedResources.push(existingResource);
+                    }
+                }
             }
         
         }   
