@@ -15,3 +15,14 @@ export const validarNumeroHuespedes = (huespedes) => {
 } 
 
 
+export const validarCapacidad = async (habitacionId, numeroHuespedes) => {
+    const habitacion = await Habitacion.findById(habitacionId);
+    if (!habitacion) {
+        throw new Error('La habitación no existe');
+    }
+
+    if (numeroHuespedes > habitacion.capacidad) {
+        throw new Error('El número de huéspedes excede la capacidad de la habitación');
+    }
+};
+
