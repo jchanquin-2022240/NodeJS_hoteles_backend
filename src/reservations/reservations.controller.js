@@ -70,5 +70,25 @@ export const reservacionesPut = async (req, res = response) => {
     }
 };
 
+export const reservacionDelete = async (req, res = response) => {
+    try {
+        const { id } = req.params;
 
+        const reservacionExistente = await Reservacion.findById(id);
+        if(!reservacionExistente){
+            return res.status(404).json({ error: 'Reservación no encontrada' });
+        }
+
+        if(reservacionExistente.usuario.toString() !== req.usuario.id){
+            return res.status(401).json({ error: 'No tienes permiso para eliminar esta reservación'});
+        }
+
+        await Reservacion.findByIdAndDelete(id);
+
+        res.status(200).json({ msg: 'Reservación eliminada exitosamente'});
+    } catch (error) {
+        console.error('Error al eliminar la reservación:', error);
+        res.status(500).json({ error: 'Error al eliminar la reservación'});
+    }
+}
 
