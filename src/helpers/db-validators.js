@@ -40,3 +40,11 @@ export const validarDisponibilidad = async (habitacionId, fechaInicio, fechaFin)
         throw new Error('La habitación no está disponible para las fechas solicitadas');
     }
 };
+
+export const validarUsuario = async (usuarioId) => {
+    const usuario = await Usuario.findById(usuarioId);
+    if (!usuario) {
+        throw new Error('El usuario no existe');
+    }
+};
+
