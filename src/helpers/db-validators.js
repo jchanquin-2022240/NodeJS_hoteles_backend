@@ -26,3 +26,17 @@ export const validarCapacidad = async (habitacionId, numeroHuespedes) => {
     }
 };
 
+export const validarDisponibilidad = async (habitacionId, fechaInicio, fechaFin) => {
+    const reservaciones = await Reservacion.find({ 
+        habitacion: habitacionId,
+        $or: [
+            { fechaInicio: { $lte: fechaInicio }, fechaFin: { $gte: fechaInicio } },
+            { fechaInicio: { $lte: fechaFin }, fechaFin: { $gte: fechaFin } },
+            { fechaInicio: { $gte: fechaInicio }, fechaFin: { $lte: fechaFin } }
+        ]
+    });
+
+    if (reservaciones.length > 0) {
+        throw new Error('La habitación no está disponible para las fechas solicitadas');
+    }
+};
