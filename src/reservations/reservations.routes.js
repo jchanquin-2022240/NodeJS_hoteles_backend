@@ -24,15 +24,7 @@ const router = Router();
 router.post(
     '/',
     [
-        check("usuario", "User ID is required").not().isEmpty(),
-        check("habitacion", "Room ID is required").not().isEmpty(),
-        check("fechaInicio", "Start date is required").not().isEmpty(),
-        check("fechaFin", "End date is required").not().isEmpty(),
-        check("huespedes", "Number of guests is required").not().isEmpty(),
-        check("pago", "Payment is required").not().isEmpty(),
-        check("fechaInicio").custom(validarFechar),
-        check("fechaFin").custom(validarFechar),
-        check("huespedes").custom(validarNumeroHuespedes)
+        
     ],
     validarCampos,
     crearReservacion
