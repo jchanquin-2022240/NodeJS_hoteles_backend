@@ -2,12 +2,12 @@ import mongoose, { Schema } from 'mongoose';
 
 const ReservacionSchema = mongoose.Schema({
     usuario: {
-        type: Schema.Types.objectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Usuario',
-        required: [true, 'User reference is mandatory'],
+        required: true
     },
     habitacion: {
-        type: Schema.Types.objectId,
+        type: Schema.Types.ObjectId,
         ref: 'Habitacion',
         required: [true, 'Room reference is mandatory'],
     },

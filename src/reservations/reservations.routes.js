@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { body, param } from 'express-validator';
+import { body, check, param } from 'express-validator';
 import {
     crearReservacion,
     getReservaciones,
@@ -18,13 +18,15 @@ import{
     validarNumeroHuespedes,
     validarUsuario
 } from '../helpers/db-validators.js';
+import { validarJWT } from '../middlewares/validar-jwt.js';
 
 const router = Router();
 
 router.post(
     '/',
     [
-        
+        validarJWT,
+        check
     ],
     validarCampos,
     crearReservacion
