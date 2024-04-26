@@ -35,3 +35,16 @@ export const reservacionPost = async (req, res) => {
         res.status(500).json({ error: 'Error al crear la reservación' });
     }
 };
+
+export const getReservaciones = async (req, res) => {
+    const usuarioId = req.usuario.id;
+
+    try {
+        const reservaciones = await Reservacion.find({ usuario: usuarioId }).populate('habitacion');
+
+        res.status(200).json({ reservaciones });
+    } catch (error) {
+        console.error('Error al obtener las reservaciones:', error);
+        res.status(500).json({ error: 'Error al obtener las reservaciones' });
+    }
+};
