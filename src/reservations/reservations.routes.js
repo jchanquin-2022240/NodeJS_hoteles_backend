@@ -56,3 +56,13 @@ router.delete(
     ],
     reservacionDelete
 );
+
+router.put(
+    "/:id",
+    [
+        validarJWT,
+        check("id", "No es un ID válido").isMongoId(),
+        check("id").custom(existeReservacionById),
+        validarCampos
+    ]
+)
