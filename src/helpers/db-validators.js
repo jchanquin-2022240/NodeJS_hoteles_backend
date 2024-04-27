@@ -48,3 +48,12 @@ export const validarUsuario = async (usuarioId) => {
     }
 };
 
+
+
+export const existeReservacionById = async (id = '') => {
+    const existeReservacion = await Reservacion.findById(id);
+    if (!existeReservacion){
+        throw new Error(`El ID: ${id} No existe`);
+    }
+}
+

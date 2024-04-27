@@ -44,3 +44,15 @@ router.post(
     ],
     reservacionPost
 );
+
+
+router.delete(
+    "/:id",
+    [
+        validarJWT,
+        check("id", "No es un ID válido").isMongoId(),
+        check("id").custom(existeReservacionById),
+        validarCampos
+    ],
+    reservacionDelete
+);
