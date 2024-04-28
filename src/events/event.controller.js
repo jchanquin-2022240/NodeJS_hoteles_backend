@@ -207,6 +207,8 @@ export const resourcesAddPost  = async (req, res) => {
 
     const { nameEvent, resources } = req.body;
 
+    let updatedResources = [];
+
     const event = await Event.findOne({ nameEvent: nameEvent})
 
     if (resources && Array.isArray(resources)) {
@@ -258,7 +260,7 @@ export const resourcesAddPost  = async (req, res) => {
         }
     }
 
-    event.resource = existingResource;
+    event.resources = event.resources.concat(updatedResources.map(resource => resource._id));
 
     await event.save();
 
