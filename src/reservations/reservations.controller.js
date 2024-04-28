@@ -2,6 +2,27 @@ import { validationResult } from 'express-validator';
 import Reservacion from './reservations.model.js';
 import Habitacion from '../bedrooms/bedrooms.model.js';
 
+
+const calcularPrecioReservacion = async (habitacionId, fechaInicio, fechaFin) => {
+    try {
+        const habitacion = await Habitacion.findById(habitacionId);
+        if (!habitacion) {
+            throw new Error('Habitación no encontrada');
+        }
+
+        // variables para 
+        const diffTiempo = fechaFin.getTime() - fechaInicio.getTime();
+        const diffDias = Math.ceil(diffTiempo / (1000 * 60 * 60 * 24));
+
+        // mutli
+        const precioTotal = habitacion.precio * diffDias;
+
+        return precioTotal;
+    } catch (error) {
+        throw new Error('Error al calcular el precio de la reservación: ' + error.message);
+    }
+};
+
 export const reservacionPost = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
