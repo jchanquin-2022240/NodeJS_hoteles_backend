@@ -26,13 +26,8 @@ export const existsLocation = async (location = '') => {
 
 export const hotelStatus = async (id = '') => {
 
-    try {
-        const hotel = await Hotel.findById(id);
-
-        if (!hotel.status) {
-            throw new Error(`Hotel with ${id} is alredy disable`);
-        }
-    } catch (error) {
-        throw new Error("Error:", error.message);
+    const hotel = await Hotel.findById(id);
+    if (!hotel.status) {
+        throw new Error(`Hotel ${hotel.nameHotel} is alredy disable`);
     }
 }

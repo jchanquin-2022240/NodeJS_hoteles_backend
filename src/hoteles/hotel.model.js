@@ -21,7 +21,8 @@ const HotelSchema = Schema({
     },
     category: {
         type: String,
-        required: [true, 'The category is required'],
+        enum: ["⭐", "⭐⭐","⭐⭐⭐","⭐⭐⭐⭐","⭐⭐⭐⭐⭐"],
+        default: "⭐"
     },
     bedrooms: {
         type: [{
