@@ -1,6 +1,7 @@
 import  { response, request } from 'express';
 import Event from './event.js'
 import Resource from '../resource/resource.js';
+import resource from '../resource/resource.js';
 
 export const eventsPost = async (req, res) => {
 
@@ -199,4 +200,118 @@ export const eventDelete = async (req, res) => {
         eventAuthentic
 
     })
+}
+
+export const resourcesAddPost  = async (req, res) => {
+
+    const { nameEvent, resources } = req.body;
+
+    const event = await Event.findOne({ nameEvent: nameEvent})
+
+    if (resources && Array.isArray(resources)) {
+        for (const resource of resources) {
+
+
+
+            let existingResource = await Resource.findOne({ nameResource: resource.nameResource });
+            let extraMount = 50;
+
+
+            if (existingResource) {
+
+                const existingResources = await Resource.find({ nameResource: resource.nameResource });
+
+
+                let versionNumber = 1;
+
+                if (existingResources.length > 0) {
+                    existingResources.forEach(existingResource => {
+                        const versionSplit = existingResource.versionResource.split("v");
+                        if (versionSplit.length === 2) {
+                            const currentVersion = parseInt(versionSplit[1]);
+                            if (!isNaN(currentVersion) && currentVersion >= versionNumber) {
+                                versionNumber = currentVersion + 1;
+                            }
+                        }
+                    });
+                }
+                
+                const newResource = new Resource({
+                    nameResource: resource.nameResource,
+                    amount: resource.amount,
+                    price: `Q${(resource.price * resource.amount + extraMount).toFixed(2)}`,
+                    versionResource: `v${versionNumber}`,
+                });
+                await newResource.save();
+                updatedResources.push(newResource);
+
+            } else {
+
+                existingResource = new Resource(resource);
+                existingResource.price = `Q${(resource.price * resource.amount + extraMount).toFixed(2)}`;
+                existingResource.versionResource = "v1";
+                await existingResource.save();
+
+                updatedResources.push(existingResource);
+            }
+        }
+    }
+
+    event.resource = existingResource;
+
+    await event.save();
+
+    res.status(200).json({
+        msg: 'Resource add',
+        event,
+    })
+
+}
+
+export const additionalServicesPost  = async (req, res) => {
+
+    const { nameEvent , additionalServices } = req.body;
+
+    const event = await Event.findOne({ nameEvent: nameEvent});
+
+    event.additionalServices = event.additionalServices.concat(additionalServices);
+
+    await event.save();
+
+    res.status(200).json({
+        msg: 'Addional Services add',
+        event
+    })
+}
+
+export const resourceDelete = async (req, res ) => {
+
+    const { eventId, resourceId } = req.body;
+
+    const event = await Event.findById(eventId);
+
+    event.resource = event.resource.filter(resource => resource.toString() !== resourceId);
+
+    await event.save();
+
+    return res.status(200).json({ 
+        message: "Recurso eliminado exitosamente", 
+        event   
+    });
+}
+
+export const additionalServiceDeletePost = async (req, res) => {
+    const { eventId, serviceName } = req.body;
+
+        const event = await Event.findById(eventId);
+
+        event.additionalServices = event.additionalServices.filter(service => service !== serviceName);
+
+        await event.save();
+
+        return res.status(200).json({
+            message: "Servicio adicional eliminado exitosamente", 
+            event 
+        });
+     
 }

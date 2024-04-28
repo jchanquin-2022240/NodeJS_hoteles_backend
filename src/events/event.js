@@ -16,6 +16,14 @@ const EventSchema = mongoose.Schema({
         required: [true, 'The evenet need one date']
     },
 
+    startTime: {
+        type: String,
+        required: [true, 'The event needo start time']
+    },
+
+    endingTime: {
+
+    },
     typeEvent: {
         type: String,
         enum: ['Conference', 'Wedding', 'Meeting', 'Other'],
