@@ -1,13 +1,6 @@
 import { response, request } from "express";
 import Hotel from './hotel.model.js';
-// import Bedroom from '../src/bedroom/bedroom.model.js'
-
-
-/* 
-metodo para la creacion de hoteles, en sprint 1 no agregara habitaciones por principios,
-cuando se tenga la parte de habitaciones se hara la conexion para agregar habitaciones
-dentro de un hotel, incluyendo las demas partes del crud
-*/
+import Bedroom from '../bedrooms/bedrooms.model.js'
 
 export const createHotel = async (req, res) => {
     try {
@@ -22,6 +15,81 @@ export const createHotel = async (req, res) => {
     } catch (error) {
 
         res.status(500).json({ msg: "Error creating hotel" });
+    }
+};
+
+export const addBedroom = async (req, res) => {
+
+    try {
+
+        const { idHotel } = req.params;
+        const { idBedroom } = req.body;
+
+        const hotel = await Hotel.findById(idHotel);
+
+        if (!hotel) {
+            return res.status(404).json({ error: `${hotel.nameHotel} not found` });
+        }
+
+        if (!idBedroom) {
+            return res.status(400).json({ error: 'Bedroom ID is required' });
+        }
+
+        const bedroom = await Bedroom.findById(idBedroom);
+        if (!bedroom) {
+            return res.status(404).json({ error: 'Bedroom not found' });
+        }
+
+        if (bedroom.estado === false) {
+            return res.status(400).json({ error: 'Bedroom is not available' });
+        }
+
+        const existingHotel = await Hotel.findOne({ bedrooms: idBedroom });
+        if (existingHotel) {
+            return res.status(400).json({ error: 'Bedroom is already assigned to another hotel' });
+        }
+
+        hotel.bedrooms.push(idBedroom);
+
+        await hotel.save();
+
+        return res.status(200).json({ message: `Bedroom with ID ${idBedroom} added to hotel called ${hotel.nameHotel}` });
+    } catch (error) {
+
+        return res.status(500).json({ error: 'Error adding bedroom to hotel' });
+    }
+};
+
+export const removeBedroom = async (req, res) => {
+
+    try {
+
+        const { idHotel } = req.params;
+        const { idBedroom } = req.body;
+
+        const hotel = await Hotel.findById(idHotel);
+
+        if (!hotel) {
+            return res.status(404).json({ error: `${hotel.nameHotel} not found` });
+        }
+
+        if (!idBedroom) {
+            return res.status(400).json({ error: 'Bedroom ID is required' });
+        }
+
+        const index = hotel.bedrooms.indexOf(idBedroom);
+        if (index === -1) {
+            return res.status(404).json({ error: `Bedroom not found in hotel called ${hotel.nameHotel}` });
+        }
+
+        hotel.bedrooms.splice(index, 1);
+
+        await hotel.save();
+
+        return res.status(200).json({ message: `Bedroom with ID ${idBedroom} removed from hotel called ${hotel.nameHotel}` });
+    } catch (error) {
+
+        return res.status(500).json({ error: 'Internal server error' });
     }
 };
 
@@ -48,7 +116,6 @@ export const getHotels = async (req, res) => {
         res.status(200).json({ total, hotels });
     } catch (error) {
 
-        console.error('Error getting hotels:', error);
         res.status(500).json({ error: 'Error getting hotels' });
     }
 };

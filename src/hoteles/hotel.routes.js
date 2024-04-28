@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { createHotel, getHotels, getHotelsAvailable, updateHotel, deleteHotel } from "./hotel.controller.js";
+import { createHotel, getHotels, getHotelsAvailable, updateHotel, deleteHotel, addBedroom, removeBedroom } from "./hotel.controller.js";
 import { existsHotel, existsNameHotel, existsLocation, hotelStatus } from "../middlewares/validateFields.js";
 import { validateFields } from "../helpers/db-validator.js";
 
@@ -18,6 +18,16 @@ router.post(
         validateFields
     ],
     createHotel
+)
+
+router.post(
+    "/:idHotel/bedroom",
+    addBedroom
+)
+
+router.delete(
+    "/:idHotel/bedroom",
+    removeBedroom
 )
 
 router.get(
