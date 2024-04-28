@@ -1,4 +1,3 @@
-import { ServerMonitoringMode } from "mongodb";
 import mongoose from "mongoose";
 
 const EventSchema = mongoose.Schema({
