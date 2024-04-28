@@ -28,10 +28,6 @@ const ReservacionSchema = mongoose.Schema({
         enum: ['pendiente', 'confirmada','cancelada'],
         default: 'pendiente',
     },
-    pago:{
-        type: Number,
-        required: [true, 'Payment is mandatory'],
-    }
 });
 
 export default mongoose.model('Reservacion', ReservacionSchema);

@@ -64,5 +64,8 @@ router.put(
         check("id", "No es un ID válido").isMongoId(),
         check("id").custom(existeReservacionById),
         validarCampos
-    ]
+    ],
+    reservacionPut
 )
+
+export default router;
