@@ -1,0 +1,64 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "reservacionesColection",
+    "collectionId": "0bb4145c-cc94-4e72-9866-eafff984c72d",
+    "dateExported": "2024-04-28T00:38:48.447Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "a128ffff-efb4-4e97-bc89-dbfdb2d263fa",
+            "colId": "0bb4145c-cc94-4e72-9866-eafff984c72d",
+            "containerId": "",
+            "name": "reservacionesPost",
+            "url": "http://localhost:3030/hoteles/v1/reservaciones",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-04-27T23:51:28.513Z",
+            "modified": "2024-04-28T00:38:42.631Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"habitacionId\": \"614ec82e5a18c83a75f0d28e\",\r\n    \"fechaInicio\": \"2024-04-15\",\r\n    \"fechaFin\": \"2024-04-20\",\r\n    \"huespedes\": 2\r\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "b401c1cc-1b60-4c29-b4a8-386c5cb66e7b",
+            "colId": "0bb4145c-cc94-4e72-9866-eafff984c72d",
+            "containerId": "",
+            "name": "getReservaciones",
+            "url": "http://localhost:8080/hoteles/v1/reservaciones",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-04-27T23:51:47.226Z",
+            "modified": "2024-04-27T23:58:18.140Z",
+            "headers": []
+        },
+        {
+            "_id": "9f19b782-5e5c-4888-80cd-e1c494e0645c",
+            "colId": "0bb4145c-cc94-4e72-9866-eafff984c72d",
+            "containerId": "",
+            "name": "reservacionesPut",
+            "url": "http://localhost:8080/hoteles/v1/reservaciones/id",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-04-27T23:52:02.458Z",
+            "modified": "2024-04-27T23:58:10.083Z",
+            "headers": []
+        },
+        {
+            "_id": "9042f5bb-bb79-4d31-96d5-4004313b9637",
+            "colId": "0bb4145c-cc94-4e72-9866-eafff984c72d",
+            "containerId": "",
+            "name": "resrvacionesDelete",
+            "url": "http://localhost:3030/hoteles/v1/reservaciones/id",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2024-04-27T23:52:20.969Z",
+            "modified": "2024-04-27T23:58:41.076Z",
+            "headers": []
+        }
+    ],
+    "ref": "vC7X4hFD6LEvq4hHSXcMSgaJIzz1AId1NtTjL5Um1nL6ww9I0mXeaQG6HBBJlWHxybXZELQUPICP8cnqZmhUhQ"
+}
