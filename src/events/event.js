@@ -1,3 +1,4 @@
+import { ServerMonitoringMode } from "mongodb";
 import mongoose from "mongoose";
 
 const EventSchema = mongoose.Schema({
@@ -18,11 +19,12 @@ const EventSchema = mongoose.Schema({
 
     startTime: {
         type: String,
-        required: [true, 'The event needo start time']
+        required: [true, 'The event need start time']
     },
 
     endingTime: {
-
+        type: String,
+        required: [true, 'The event need ending time']
     },
     typeEvent: {
         type: String,

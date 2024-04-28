@@ -1,6 +1,17 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { additionalServiceDeletePost, additionalServicesPost, eventDelete, eventPut, eventsGet, eventsPost, getEventForName, resourceDelete, resourcesAddPost } from "./event.controller.js";
+import { 
+    additionalServiceDeletePost, 
+    additionalServicesPost, 
+    eventDelete, 
+    eventPut, 
+    eventsGet, 
+    eventsPost, 
+    getEventForName,
+    resourceDelete, 
+    resourcesAddPost } from "./event.controller.js";
+
+import { existingNameEvent } from "../helpers/db-validator.js";
 
 const router = Router();
 
@@ -8,10 +19,14 @@ router.post(
     "/",
     [
         check("nameEvent", "The event need one name").not().isEmpty(),
+        check("nameEvent").custom(existingNameEvent),
         check("descriptionEvent", "The event need one description").not().isEmpty(),
         check("date", "The evenet need one date").not().isEmpty(),
-        check("date", "The date need format").isDate(),
+        check("date", "The format is incorrect").isDate(),
+        check('startTime', 'The format is incorrect').isISO8601(),
+        check('endingTime', 'The format is incorrect').isISO8601(),
         check("typeEvent", "The event need one type").not().isEmpty(),
+
     ], eventsPost)
 
 router.get("/", eventsGet)
@@ -22,9 +37,9 @@ router.put("/", [check("nameEventUpdate", "You need the name  of the your event"
 
 router.get("/searching", [check("nameEvent", "You need the name of event for search one")], getEventForName)
 
-router.post ("/resourcesAdd", [], resourcesAddPost) 
+router.post ("/resourcesAdd", [ check("resource", "The resource is empty").not().isEmpty(), ], resourcesAddPost) 
 
-router.post ("/addiotnalServiceAdd ", [],additionalServicesPost ) 
+router.post ("/addiotnalServiceAdd ", [check("additionalServices", "The services is empty").not().isEmpty()], additionalServicesPost ) 
 
 router.delete("/deleteAddiotionalService", 
     [

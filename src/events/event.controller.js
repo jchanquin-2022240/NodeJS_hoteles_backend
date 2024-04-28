@@ -1,11 +1,10 @@
 import  { response, request } from 'express';
 import Event from './event.js'
 import Resource from '../resource/resource.js';
-import resource from '../resource/resource.js';
 
 export const eventsPost = async (req, res) => {
 
-    const { nameEvent, descriptionEvent, date, typeEvent, resources, additionalServices } = req.body;
+    const { nameEvent, descriptionEvent, date, typeEvent, resources, additionalServices, startTime, endingTime } = req.body;
 
     const updatedResources = [];
 
@@ -70,7 +69,9 @@ export const eventsPost = async (req, res) => {
         date: eventDate,
         typeEvent,
         resources: updatedResources,
-        additionalServices
+        additionalServices,
+        startTime,
+        endingTime
     });
 
     await event.save();
