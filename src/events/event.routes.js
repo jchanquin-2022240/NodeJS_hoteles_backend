@@ -38,11 +38,11 @@ router.put("/", [check("nameEventUpdate", "You need the name  of the your event"
 
 router.get("/searching", [check("nameEvent", "You need the name of event for search one"), validationFields], getEventForName)
 
-router.post ("/resourcesAdd", [ check("resource", "The resource is empty").not().isEmpty(), validationFields], resourcesAddPost) 
+router.post ("/resourcesAdd", [ ], resourcesAddPost) 
 
-router.post ("/addiotnalServiceAdd ", [check("additionalServices", "The services is empty").not().isEmpty(), validationFields], additionalServicesPost ) 
+router.post ("/addtionalServiceAdd", [check("additionalServices", "The services is empty").not().isEmpty(), validationFields], additionalServicesPost ) 
 
-router.delete("/deleteAddiotionalService", 
+router.post("/deleteAddiotionalService", 
     [
         check("serviceName", "You need the name for the service").not().isEmpty(),
         check("eventId", "You need id for event").not().isEmpty(),
@@ -50,7 +50,7 @@ router.delete("/deleteAddiotionalService",
         validationFields
     ], additionalServiceDeletePost)
 
-router.delete("/deleteResource", 
+router.post("/deleteResource", 
         [  
            check("resourceId", "You need id for resource").not().isEmpty(),
            check("eventId", "You need id for event").not().isEmpty(),

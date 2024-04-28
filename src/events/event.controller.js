@@ -293,7 +293,8 @@ export const resourceDelete = async (req, res ) => {
 
     const event = await Event.findById(eventId);
 
-    event.resource = event.resource.filter(resource => resource.toString() !== resourceId);
+
+    event.resources = event.resources.filter(resource => resource.toString() !== resourceId);
 
     await event.save();
 
