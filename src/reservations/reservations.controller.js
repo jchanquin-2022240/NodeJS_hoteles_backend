@@ -29,7 +29,7 @@ export const reservacionPost = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { habitacionId, fechaInicio, fechaFin, huespedes, pago } = req.body;
+    const { habitacionId, fechaInicio, fechaFin, huespedes } = req.body;
     const usuarioId = req.usuario.id;
 
     try {
@@ -38,14 +38,16 @@ export const reservacionPost = async (req, res) => {
             return res.status(404).json({ error: 'Habitación no encontrada' });
         }
 
+        const precioReservacion = await calcularPrecioReservacion(habitacionId, fechaInicio, fechaFin);
+
         const reservacion = new Reservacion({
             usuario: usuarioId,
             habitacion: habitacionId,
             fechaInicio,
             fechaFin,
             huespedes,
-            estado: 'pendiente', // Estado por defecto
-            pago
+            estado: 'pendiente',
+            pago: precioReservacion
         });
 
         await reservacion.save();
