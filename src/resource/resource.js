@@ -5,10 +5,21 @@ const ResourceSchema = mongoose.Schema({
         type: String,
         required: [true, 'The resource need one name']
     },
-
-    amount:{
-        type: Number,
-        required: [true, 'The resource need one mount']
+    staff: {
+        type: String,
+            required: [true, 'The resource need one staff']
+    },
+    equipment: {
+        type: String,
+        required: [true, 'The resource need one equipment']
+    },
+    catering: {
+        type: String,
+        required: [true, 'The resource need one catering']
+    },
+    state : {
+        type: Boolean,
+        default: true
     }
 
 })
