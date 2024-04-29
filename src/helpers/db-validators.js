@@ -1,6 +1,7 @@
 import Reservacion from '../reservations/reservations.model';
 import Habitacion from '../bedrooms/bedrooms.model';
 import Usuario from '../users/users.model';
+import Event from "../events/event.js";
 
 export const validarNumeroHabitacionUnico = async (numero) => {
     const habitacionExistente = await Habitacion.findOne({ numero });
@@ -35,6 +36,13 @@ export const validarUsuario = async (usuarioId) => {
         throw new Error('El usuario no existe');
     }
 };
+
+export const existingNameEvent = async(nameEvent = '') => {
+    const existingNameEventXD = await Event.findOne({ nameEvent: nameEvent});
+    if(existingNameEventXD) {
+        throw new Error (`The name event ${nameEvent} does exist in the database`);
+    }
+}
 
 export {
     validarNumeroHabitacionUnico,

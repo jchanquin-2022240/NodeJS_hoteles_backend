@@ -1,0 +1,170 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Events",
+    "dateExported": "2024-04-28T04:57:55.412Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "cef7e918-1d1f-4a96-b64a-bc53c43b9cd0",
+            "colId": "1ec9a3d8-116c-4f3e-9b48-27c409c73002",
+            "containerId": "",
+            "name": "post_Events",
+            "url": "http://localhost:3000/desconocido/v1/events",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-04-18T14:59:29.961Z",
+            "modified": "2024-04-28T03:57:22.116Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nameEvent\":\"LOL\",\n  \"descriptionEvent\": \"XD\",\n  \"date\": \"2025-05-15\",\n  \"typeEvent\":\"Other\",\n   \"resources\": [\n    { \"nameResource\": \"Sala de conferencias\", \"amount\": 10 , \"price\": \"120\" },\n    { \"nameResource\": \"Proyector\", \"amount\": 10, \"price\": \"129\" }\n    ],\n  \"additionalServices\": [\n          \"Nada mas\",\n          \"YA BASTA\"\n    ],\n    \n    \"startTime\": \"10:30:00\",\n    \"endingTime\": \"21:30:00\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ec7a28e2-32de-43a5-8621-b23088449bb4",
+            "colId": "1ec9a3d8-116c-4f3e-9b48-27c409c73002",
+            "containerId": "",
+            "name": "get_Events",
+            "url": "http://localhost:3000/desconocido/v1/events",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-04-18T15:33:37.354Z",
+            "modified": "2024-04-18T15:33:48.652Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "8f5900de-b4d7-4b5e-b4e7-ba781749ea22",
+            "colId": "1ec9a3d8-116c-4f3e-9b48-27c409c73002",
+            "containerId": "",
+            "name": "delete_Events",
+            "url": "http://localhost:3000/desconocido/v1/events/6625814a0124bf9701bc6256",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-04-18T16:01:59.130Z",
+            "modified": "2024-04-21T21:24:39.729Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5c267a78-e450-4cec-af41-ad390070fe39",
+            "colId": "1ec9a3d8-116c-4f3e-9b48-27c409c73002",
+            "containerId": "",
+            "name": "put_Events",
+            "url": "http://localhost:3000/desconocido/v1/events",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-04-22T03:33:44.942Z",
+            "modified": "2024-04-22T04:53:39.578Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nameEventUpdate\": \"XD\",\n  \"nameEvent\":\"XD\",\n  \"descriptionEvent\": \"XD\",\n  \"date\": \"2025-05-15\",\n  \"typeEvent\":\"Other\",\n   \"resources\": [\n    { \n      \"versionResourceUpdate\": \"v2\",\n      \"nameResourceUpdate\":\"Proyector\",\n      \"nameResource\": \"xd\", \n      \"amount\": 10 , \n      \"price\": \"1\" },\n    { \n      \"versionResourceUpdate\": \"v1\",\n      \"nameResourceUpdate\":\"XD\",\n      \"nameResource\": \"XD\", \n      \"amount\": 10, \n      \"price\": \"10\" }\n    ],\n  \"additionalServices\": [\n          \"LOL\",\n          \"AMEN\"\n    ]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "13b2ad50-834b-4742-9964-8eccbc859d4a",
+            "colId": "1ec9a3d8-116c-4f3e-9b48-27c409c73002",
+            "containerId": "",
+            "name": "get_eventForName",
+            "url": "http://localhost:3000/desconocido/v1/events/searching",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-04-22T04:58:05.639Z",
+            "modified": "2024-04-22T05:08:41.511Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nameEvent\": \"LOL\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4849dfac-9e20-4e75-a01f-9f533ded898e",
+            "colId": "1ec9a3d8-116c-4f3e-9b48-27c409c73002",
+            "containerId": "",
+            "name": "post_Resource",
+            "url": "http://localhost:3000/desconocido/v1/events/resourcesAdd",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-04-28T03:30:17.171Z",
+            "modified": "2024-04-28T03:37:17.872Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nameEvent\": \"LOL\",\n  \"resources\": [\n    { \"nameResource\": \"BESTIA\", \"amount\": 10 , \"price\": \"120\" },\n    { \"nameResource\": \"1\", \"amount\": 10, \"price\": \"129\" }\n    ]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "277ca025-4a72-49d9-a836-21cc3f746fc1",
+            "colId": "1ec9a3d8-116c-4f3e-9b48-27c409c73002",
+            "containerId": "",
+            "name": "post_Service",
+            "url": "http://localhost:3000/desconocido/v1/events/addtionalServiceAdd",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-04-28T04:01:00.461Z",
+            "modified": "2024-04-28T04:04:04.022Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n   \"nameEvent\": \"LOL\",\n   \"additionalServices\": [\n          \"Nada mas\",\n          \"YA BASTA\"\n    ]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1c0a3b9d-7a12-4b66-b6ab-51722748ad33",
+            "colId": "1ec9a3d8-116c-4f3e-9b48-27c409c73002",
+            "containerId": "",
+            "name": "Delete_Resource",
+            "url": "http://localhost:3000/desconocido/v1/events/deleteResource",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2024-04-28T04:05:18.305Z",
+            "modified": "2024-04-28T04:54:15.410Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"eventId\": \"662dc81fb13ef5e36da69021\",\n  \"resourceId\": \"662dd666a23a175987203436\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a13128b9-8dbe-450c-a16d-6ff79bab0d7d",
+            "colId": "1ec9a3d8-116c-4f3e-9b48-27c409c73002",
+            "containerId": "",
+            "name": "Delete_Service",
+            "url": "http://localhost:3000/desconocido/v1/events/deleteAddiotionalService",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2024-04-28T04:55:08.196Z",
+            "modified": "2024-04-28T04:57:02.121Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"eventId\":\"662dc81fb13ef5e36da69021\",\n  \"serviceName\": \"Nada mas\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
