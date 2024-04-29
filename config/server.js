@@ -5,11 +5,13 @@ import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import { dbConnection } from './mongo.js'
+import hotelRoutes from '../src/hoteles/hotel.routes.js'
 
 class Server{
     constructor(){
         this.app = express()
         this.port = process.env.PORT
+        this.hotelPath = '/api/v1/hotel'
 
         this.middlewares()
         this.conectarDB()
@@ -29,6 +31,7 @@ class Server{
     }
 
     routes(){
+        this.app.use(this.hotelPath, hotelRoutes)
     }
 
     listen(){
