@@ -11,7 +11,7 @@ import {
     resourceDelete, 
     resourcesAddPost } from "./event.controller.js";
 
-import { existingNameEvent } from "../helpers/db-validator.js";
+import { existingNameEvent } from "../helpers/db-validators.js";
 import { validationFields } from "../middlewares/validationFields.js";
 
 const router = Router();
