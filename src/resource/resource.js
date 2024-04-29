@@ -1,21 +1,17 @@
 import mongoose from "mongoose";
 
 const ResourceSchema = mongoose.Schema({
-    nameResource: {
+    namePackage: {
         type: String,
         required: [true, 'The resource need one name']
     },
-    staff: {
+    description: {
         type: String,
-            required: [true, 'The resource need one staff']
+            required: [true, 'The resource need one description']
     },
-    equipment: {
-        type: String,
-        required: [true, 'The resource need one equipment']
-    },
-    catering: {
-        type: String,
-        required: [true, 'The resource need one catering']
+    price: {
+        type: Number,
+        required: [true, 'The resource need one price']
     },
     state : {
         type: Boolean,
