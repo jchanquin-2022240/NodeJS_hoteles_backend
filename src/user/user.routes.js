@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { registerUser, getUser, updateUser, deleteUser, login } from "./user.controller.js";
+import { registerUser, getUser, updateUser, deleteUser } from "./user.controller.js";
 
 const router = Router()
 
@@ -13,16 +13,6 @@ router.post(
     ],
     registerUser
 )
-
-router.post(
-    '/login',
-    [
-        check('email', 'This is not a valid email').isEmail(),
-        check('password', 'The password is necesary').not().isEmpty()
-    ],
-    login
-)
-
 
 router.get(
     '/',

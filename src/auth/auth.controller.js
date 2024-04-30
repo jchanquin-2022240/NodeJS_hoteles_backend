@@ -1,44 +1,47 @@
 import bcryptjs from 'bcryptjs';
-import Usuario from '../user/user.model.js'
-import { generarJWT } from '../helpers/generate-jwt.js'; 
+import User from '../user/user.model.js';
+import { generarJWT } from '../helpers/generate-jwt.js';
+
 
 export const login = async (req, res) => {
-    const { email, password } = req.body;
+
+  const { email, password } = req.body;
 
   try {
-    const usuario = await Usuario.findOne({ email });
 
-    if (!usuario) {
+    const user = await User.findOne({ email });
+
+    if (!user) {
       return res.status(400).json({
-        msg: "Credenciales incorrectas, Correo no existe en la base de datos",
+        msg: "Incorrect credentials, Email does not exist in the database",
       });
     }
 
-    if (!usuario.status) {
+    if (!user.status) {
       return res.status(400).json({
-        msg: "El usuario no existe en la base de datos",
+        msg: "User is disabled at this moment",
       });
     }
 
-    const validPassword = bcryptjs.compareSync(password, usuario.password);
+    const validPassword = bcryptjs.compareSync(password, user.password);
     if (!validPassword) {
       return res.status(400).json({
-        msg: "La contraseña es incorrecta",
+        msg: "Password is incorrect",
       });
     }
 
-    const token = await generarJWT( usuario.id);
+    const token = await generarJWT(user.id);
 
     res.status(200).json({
-      msg: 'Login Ok!!!',
-      usuario,
+      msg: 'Login Successfull, Welcome:',
+      user,
       token
     });
 
   } catch (e) {
     console.log(e);
     res.status(500).json({
-      msg: "Comuniquese con el administrador",
+      msg: "Contact administrator",
     });
   }
-}
+};
