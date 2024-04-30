@@ -27,9 +27,9 @@ export const resourceGet = async (req, res) => {
 //put
 export const resourcePut = async (req, res) => {
     const { id } = req.params;
-    const { _id, namePackage, description, price } = req.body;
+    const { _id, ...rest } = req.body;
 
-    await Resource.findByIdAndUpdate(id, resto);
+    await Resource.findByIdAndUpdate(id, rest);
 
     const resource = await Resource.findOne({_id: id});
 
