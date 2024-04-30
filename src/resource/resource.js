@@ -20,4 +20,4 @@ const ResourceSchema = mongoose.Schema({
 
 })
 
-export default mongoose.model('Resource', ResourceSchema)
+export default mongoose.model('Resource', ResourceSchema);
