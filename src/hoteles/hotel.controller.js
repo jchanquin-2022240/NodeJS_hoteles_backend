@@ -1,6 +1,5 @@
 import { response, request } from "express";
 import Hotel from './hotel.model.js';
-import Bedroom from '../bedrooms/bedrooms.model.js'
 
 export const createHotel = async (req, res) => {
     try {

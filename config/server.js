@@ -7,6 +7,7 @@ import morgan from 'morgan'
 import { dbConnection } from './mongo.js'
 import userRoutes from '../src/user/user.routes.js'
 import authRoutes from '../src/auth/auth.routes.js'
+import hotelRoutes from '../src/hoteles/hotel.routes.js'
 
 
 class Server{
@@ -15,6 +16,7 @@ class Server{
         this.port = process.env.PORT
         this.userPath = '/hoteles/v1/users'
         this.authPath = '/hoteles/v1/auth'
+        this.hotelPath = '/hoteles/v1/hotel'
 
         this.middlewares()
         this.conectarDB()
@@ -36,6 +38,7 @@ class Server{
     routes(){
         this.app.use(this.userPath, userRoutes )
         this.app.use(this.authPath, authRoutes)
+        this.app.use(this.hotelPath, hotelRoutes)
     }
 
     listen(){
