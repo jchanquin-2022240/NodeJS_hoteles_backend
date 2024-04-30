@@ -25,6 +25,15 @@ export const resourceGet = async (req, res) => {
 }
 
 //put
+export const resourcePut = async (req, res) => {
+    const { id } = req.params;
+    const { _id, namePackage, description, price } = req.body;
 
+    await Resource.findByIdAndUpdate(id, resto);
+
+    const resource = await Resource.findOne({_id: id});
+
+    res.status(200).json({msg: "Resource updated successfully", resource})
+}
 
 ///delete
