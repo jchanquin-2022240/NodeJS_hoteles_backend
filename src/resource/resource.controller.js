@@ -11,10 +11,11 @@ export const resourcePost = async (req, res) => {
 
 //get
 export const resourceGet = async (req, res) => {
+    const {limite, desde} = req.query;
     const query = {state: true}
 
     const [total, resources] = await Promise.all([
-        Resouce.countDocuments(query),
+        Resource.countDocuments(query),
         Resource.find(query)
         .skip(Number(desde))
         .limit(Number(limite))
