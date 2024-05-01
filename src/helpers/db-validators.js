@@ -1,6 +1,6 @@
-import Reservacion from '../reservations/reservations.model';
-import Habitacion from '../bedrooms/bedrooms.model';
-import Usuario from '../users/users.model';
+import Reservacion from '../reservations/reservations.model.js';
+import Habitacion from '../bedrooms/bedrooms.model.js';
+import Usuario from '../user/user.model.js';
 
 export const validarNumeroHabitacionUnico = async (numero) => {
     const habitacionExistente = await Habitacion.findOne({ numero });
@@ -9,11 +9,6 @@ export const validarNumeroHabitacionUnico = async (numero) => {
     }
 };
 
-export const validarCapacidadHabitacion = (capacidad) => {
-    if (capacidad <= 0) {
-        throw new Error('La capacidad de la habitación debe ser mayor que cero');
-    }
-};
 
 export const validarExistenciaHabitacion = async (habitacionId) => {
     const habitacion = await Habitacion.findById(habitacionId);
@@ -34,12 +29,4 @@ export const validarUsuario = async (usuarioId) => {
     if (!usuario) {
         throw new Error('El usuario no existe');
     }
-};
-
-export {
-    validarNumeroHabitacionUnico,
-    validarCapacidadHabitacion,
-    validarExistenciaHabitacion,
-    validarReservacionesAsociadas,
-    validarUsuario
 };
