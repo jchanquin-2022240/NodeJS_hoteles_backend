@@ -1,18 +1,20 @@
+
 import { Router } from "express";
 import { check } from "express-validator";
-import { 
-    additionalServiceDeletePost, 
-    additionalServicesPost, 
-    eventDelete, 
-    eventPut, 
-    eventsGet, 
-    eventsPost, 
+import {
+    additionalServiceDeletePost,
+    additionalServicesPost,
+    eventDelete,
+    eventPut,
+    eventsGet,
+    eventsPost,
     getEventForName,
-    resourceDelete, 
-    resourcesAddPost } from "./event.controller.js";
+    resourceDelete,
+    resourcesAddPost
+} from "./event.controller.js";
 
-import { existingNameEvent } from "../helpers/db-validator.js";
-import { validationFields } from "../middlewares/validationFields.js";
+import { existingNameEvent } from "../helpers/db-validators.js";
+import { validarCampos } from "../middlewares/validar-campos.js";
 
 const router = Router();
 
@@ -24,39 +26,45 @@ router.post(
         check("descriptionEvent", "The event need one description").not().isEmpty(),
         check("date", "The evenet need one date").not().isEmpty(),
         check("date", "The format is incorrect").not().isDate(),
-        check('startTime', 'The format is incorrect').not().isISO8601(),
-        check('endingTime', 'The format is incorrect').not().isISO8601(),
+        check('startTime', 'Invalid start time format').matches(/^([01]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$/),
+        check('endingTime', 'Invalid ending time format').matches(/^([01]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$/),
         check("typeEvent", "The event need one type").not().isEmpty(),
-        validationFields
+        validarCampos
     ], eventsPost)
 
 router.get("/", eventsGet)
 
-router.delete("/:id", [ check("id", "It is not an id not valid").isMongoId(), validationFields], eventDelete)
+router.delete("/:id", [check("id", "It is not an id not valid").isMongoId(), validationFields], eventDelete)
 
-router.put("/", [check("nameEventUpdate", "You need the name  of the your event"), validationFields],eventPut) 
+router.put("/:id",
+    [
+        check("nameEvent").custom(existingNameEvent),
+        check('startTime', 'Invalid start time format').matches(/^([01]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$/),
+        check('endingTime', 'Invalid ending time format').matches(/^([01]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$/),
+        check("id", "It is not a mongo id").isMongoId(),
+        validarCampos], eventPut)
 
 router.get("/searching", [check("nameEvent", "You need the name of event for search one"), validationFields], getEventForName)
 
-router.post ("/resourcesAdd", [ ], resourcesAddPost) 
+router.post("/resourcesAdd/:id", [check("id", "It is not a mongo id").isMongoId(),], resourcesAddPost)
 
-router.post ("/addtionalServiceAdd", [check("additionalServices", "The services is empty").not().isEmpty(), validationFields], additionalServicesPost ) 
+router.post("/addtionalServiceAdd", [check("additionalServices", "The services is empty").not().isEmpty(), validationFields], additionalServicesPost)
 
-router.post("/deleteAddiotionalService", 
+router.post("/deleteAddiotionalService",
     [
         check("serviceName", "You need the name for the service").not().isEmpty(),
         check("eventId", "You need id for event").not().isEmpty(),
         check("eventId", "It is not a mongo id").isMongoId(),
-        validationFields
+        validarCampos
     ], additionalServiceDeletePost)
 
-router.post("/deleteResource", 
-        [  
-           check("resourceId", "You need id for resource").not().isEmpty(),
-           check("eventId", "You need id for event").not().isEmpty(),
-           check("resourceId", "It is not a mongo id").isMongoId(),
-           check("eventId", "It is not a mongo id").isMongoId(),
-           validationFields
-        ], resourceDelete)
+router.post("/deleteResource",
+    [
+        check("resourceId", "You need id for resource").not().isEmpty(),
+        check("eventId", "You need id for event").not().isEmpty(),
+        check("resourceId", "It is not a mongo id").isMongoId(),
+        check("eventId", "It is not a mongo id").isMongoId(),
+        validarCampos
+    ], resourceDelete)
 
 export default router;

@@ -10,6 +10,8 @@ import authRoutes from '../src/auth/auth.routes.js'
 import hotelRoutes from '../src/hoteles/hotel.routes.js'
 import habitacionesRoutes from '../src/bedrooms/bedrooms.routes.js'
 import reservacionRoutes from '../src/reservations/reservations.routes.js'
+import eventRoutes from '../src/events/event.js'
+import resourceRoutes from '../src/resource/resource.routes.js'
 
 class Server{
     constructor(){
@@ -20,6 +22,10 @@ class Server{
         this.hotelPath = '/hoteles/v1/hotel'
         this.habitacionPath = '/hoteles/v1/habitaciones'
         this.reservacionPath = '/hoteles/v1/reservacion'
+        this.eventPath = '/hoteles/v1/event'
+        this.resourcePath = '/hoteles/v1/resource'
+
+
 
         this.middlewares()
         this.conectarDB()
@@ -44,6 +50,8 @@ class Server{
         this.app.use(this.hotelPath, hotelRoutes)
         this.app.use(this.habitacionPath, habitacionesRoutes)
         this.app.use(this.reservacionPath, reservacionRoutes)
+        this.app.use(this.eventPath, eventRoutes)
+        this.app.use(this.resourcePath, resourceRoutes)
     }
 
     listen(){

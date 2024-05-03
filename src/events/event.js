@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 
 const EventSchema = mongoose.Schema({
@@ -35,7 +36,7 @@ const EventSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Resource'
     }],
-    
+
     additionalServices: [String],
 
     state: {

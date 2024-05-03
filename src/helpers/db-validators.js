@@ -2,6 +2,8 @@ import { validationResult } from "express-validator";
 import User from '../user/user.model.js';
 import Hotel from '../hoteles/hotel.model.js';
 import Habitacion from '../bedrooms/bedrooms.model.js';
+import Reservacion from '../reservations/reservations.model.js';
+import Event from '../events/event.js';
 
 export const esRoleValido = async (role = '') => {
     const existeRol = await Role.findOne({role});
@@ -141,5 +143,14 @@ export const existeReservacionById = async (id = '') => {
     const existeReservacion = await Reservacion.findById(id);
     if (!existeReservacion) {
         throw new Error(`El ID: ${id} No existe`);
+    }
+}
+
+//eventos
+
+export const existingNameEvent = async (nameEvent = '') => {
+    const existingNameEventXD = await Event.findOne({ nameEvent: nameEvent });
+    if (existingNameEventXD) {
+        throw new Error(`The name event ${nameEvent} does exist in the database`);
     }
 }
