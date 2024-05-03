@@ -27,7 +27,7 @@ router.get("/", getReservaciones);
 router.post(
     "/",
     [
-       // validarJWT,
+        validarJWT,
         check("habitacionId", "El ID de la habitación es obligatorio").not().isEmpty(),
         check("habitacionId").custom(validarCapacidad),
         check("fechaInicio", "La fecha de inicio es obligatoria").not().isEmpty(),
