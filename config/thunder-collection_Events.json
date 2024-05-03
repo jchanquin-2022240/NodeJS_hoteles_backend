@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Events",
-    "dateExported": "2024-04-28T04:57:55.412Z",
+    "dateExported": "2024-05-03T16:12:57.266Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -14,12 +14,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-04-18T14:59:29.961Z",
-            "modified": "2024-04-28T03:57:22.116Z",
+            "modified": "2024-05-03T06:30:27.245Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"nameEvent\":\"LOL\",\n  \"descriptionEvent\": \"XD\",\n  \"date\": \"2025-05-15\",\n  \"typeEvent\":\"Other\",\n   \"resources\": [\n    { \"nameResource\": \"Sala de conferencias\", \"amount\": 10 , \"price\": \"120\" },\n    { \"nameResource\": \"Proyector\", \"amount\": 10, \"price\": \"129\" }\n    ],\n  \"additionalServices\": [\n          \"Nada mas\",\n          \"YA BASTA\"\n    ],\n    \n    \"startTime\": \"10:30:00\",\n    \"endingTime\": \"21:30:00\"\n}",
+                "raw": "{\n  \"nameEvent\":\"21\",\n  \"descriptionEvent\": \"XD\",\n  \"date\": \"2025-05-15\",\n  \"typeEvent\":\"Other\",\n   \"resources\": [\"663479820f40273760447b49\"],\n  \"additionalServices\": [\n          \"Nada mas\",\n          \"YA BASTA\"\n    ],\n    \"startTime\": \"12:20:11\",\n    \"endingTime\": \"12:30:12\"\n}",
                 "form": []
             },
             "tests": []
@@ -57,16 +57,16 @@
             "colId": "1ec9a3d8-116c-4f3e-9b48-27c409c73002",
             "containerId": "",
             "name": "put_Events",
-            "url": "http://localhost:3000/desconocido/v1/events",
+            "url": "http://localhost:3000/desconocido/v1/events/6634870cd801bcf9755c05d7",
             "method": "PUT",
             "sortNum": 40000,
             "created": "2024-04-22T03:33:44.942Z",
-            "modified": "2024-04-22T04:53:39.578Z",
+            "modified": "2024-05-03T06:41:44.379Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"nameEventUpdate\": \"XD\",\n  \"nameEvent\":\"XD\",\n  \"descriptionEvent\": \"XD\",\n  \"date\": \"2025-05-15\",\n  \"typeEvent\":\"Other\",\n   \"resources\": [\n    { \n      \"versionResourceUpdate\": \"v2\",\n      \"nameResourceUpdate\":\"Proyector\",\n      \"nameResource\": \"xd\", \n      \"amount\": 10 , \n      \"price\": \"1\" },\n    { \n      \"versionResourceUpdate\": \"v1\",\n      \"nameResourceUpdate\":\"XD\",\n      \"nameResource\": \"XD\", \n      \"amount\": 10, \n      \"price\": \"10\" }\n    ],\n  \"additionalServices\": [\n          \"LOL\",\n          \"AMEN\"\n    ]\n}",
+                "raw": "{\n  \"nameEvent\":\"\",\n  \"descriptionEvent\": \"XD\",\n  \"date\": \"2025-05-15\",\n  \"typeEvent\":\"Other\",\n  \"additionalServices\": [\n          \"Nada mas\",\n          \"YA BASTA\",\n          \"caca\"\n    ],\n    \"startTime\": \"12:20:11\",\n    \"endingTime\": \"12:30:12\"\n}",
                 "form": []
             },
             "tests": []
@@ -95,16 +95,16 @@
             "colId": "1ec9a3d8-116c-4f3e-9b48-27c409c73002",
             "containerId": "",
             "name": "post_Resource",
-            "url": "http://localhost:3000/desconocido/v1/events/resourcesAdd",
+            "url": "http://localhost:3000/desconocido/v1/events/resourcesAdd/66350ad59dcd75c43b6b8810",
             "method": "POST",
             "sortNum": 60000,
             "created": "2024-04-28T03:30:17.171Z",
-            "modified": "2024-04-28T03:37:17.872Z",
+            "modified": "2024-05-03T16:03:42.186Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"nameEvent\": \"LOL\",\n  \"resources\": [\n    { \"nameResource\": \"BESTIA\", \"amount\": 10 , \"price\": \"120\" },\n    { \"nameResource\": \"1\", \"amount\": 10, \"price\": \"129\" }\n    ]\n}",
+                "raw": "{\n  \"resources\": [\n      \"663479820f40273760447b49\"\n    ]\n}",
                 "form": []
             },
             "tests": []
