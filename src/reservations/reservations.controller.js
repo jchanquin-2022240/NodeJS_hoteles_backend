@@ -1,3 +1,4 @@
+
 import { validationResult } from 'express-validator';
 import Reservacion from './reservations.model.js';
 import Habitacion from '../bedrooms/bedrooms.model.js';
@@ -118,4 +119,3 @@ export const reservacionDelete = async (req, res) => {
         res.status(500).json({ error: 'Error al eliminar la reservación' });
     }
 };
-

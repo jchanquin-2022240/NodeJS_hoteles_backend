@@ -1,3 +1,4 @@
+
 import { Router } from 'express';
 import { check } from 'express-validator';
 import {
@@ -11,21 +12,22 @@ import {
     validarFechar,
     validarNumeroHuespedes,
     validarCapacidad,
-    validarDisponibilidad
+    validarDisponibilidad,
+    existeReservacionById
 } from "../helpers/db-validators.js";
 
 import { validarCampos } from '../middlewares/validar-campos.js';
 import { validarJWT } from '../middlewares/validar-jwt.js';
 
 
-const router = Router();    
+const router = Router();
 
-router.get("/",getReservaciones);
+router.get("/", getReservaciones);
 
 router.post(
     "/",
     [
-        validarJWT,
+       // validarJWT,
         check("habitacionId", "El ID de la habitación es obligatorio").not().isEmpty(),
         check("habitacionId").custom(validarCapacidad),
         check("fechaInicio", "La fecha de inicio es obligatoria").not().isEmpty(),
