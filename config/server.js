@@ -8,15 +8,16 @@ import { dbConnection } from './mongo.js'
 import userRoutes from '../src/user/user.routes.js'
 import authRoutes from '../src/auth/auth.routes.js'
 import hotelRoutes from '../src/hoteles/hotel.routes.js'
-
+import habitacionesRoutes from '../src/bedrooms/bedrooms.routes.js'
 
 class Server{
     constructor(){
         this.app = express()
         this.port = process.env.PORT
-        this.userPath = '/hoteles/v1/users'
+        this.userPath = '/hoteles/v1/user'
         this.authPath = '/hoteles/v1/auth'
         this.hotelPath = '/hoteles/v1/hotel'
+        this.habitacionPath = '/hoteles/v1/habitaciones'
 
         this.middlewares()
         this.conectarDB()
@@ -39,6 +40,7 @@ class Server{
         this.app.use(this.userPath, userRoutes )
         this.app.use(this.authPath, authRoutes)
         this.app.use(this.hotelPath, hotelRoutes)
+        this.app.use(this.habitacionPath, habitacionesRoutes)
     }
 
     listen(){
