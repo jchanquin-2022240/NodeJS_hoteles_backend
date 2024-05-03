@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "BEDROOMS",
     "collectionId": "7ef468e5-a4a9-4db2-a49e-2352e838002b",
-    "dateExported": "2024-05-01T21:35:36.979Z",
+    "dateExported": "2024-05-03T01:18:43.174Z",
     "version": "1.2",
     "folders": [],
     "requests": [
@@ -15,11 +15,11 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2024-05-01T15:32:56.679Z",
-            "modified": "2024-05-01T19:45:29.204Z",
+            "modified": "2024-05-03T00:56:19.823Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\r\n    \"numero\": \"103\",\r\n    \"tipo\": \"individual\",\r\n    \"capacidad\": 1,\r\n    \"precio\": 100,\r\n    \"estado\": true\r\n}\r\n",
+                "raw": "{\n    \"numero\": \"105\",\n    \"tipo\": \"individual\",\n    \"capacidad\": 1,\n    \"precio\": 100,\n    \"estado\": true\n}\n",
                 "form": []
             }
         },
@@ -28,15 +28,15 @@
             "colId": "7ef468e5-a4a9-4db2-a49e-2352e838002b",
             "containerId": "",
             "name": "PUT_Bedrooms",
-            "url": "http://localhost:3000/hoteles/v1/bedrom/66329bf2c66c8bf1ad1344e8",
+            "url": "http://localhost:3000/hoteles/v1/bedrom/663436330afc65de814ffbf8",
             "method": "PUT",
             "sortNum": 30000,
             "created": "2024-05-01T19:54:03.326Z",
-            "modified": "2024-05-01T20:24:58.987Z",
+            "modified": "2024-05-03T00:59:33.018Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\r\n    \"capacidad\": \"2\"\r\n}\r\n",
+                "raw": "{\n    \"numero\": \"104\"\n}\n",
                 "form": []
             }
         },
@@ -49,7 +49,7 @@
             "method": "GET",
             "sortNum": 40000,
             "created": "2024-05-01T20:31:40.909Z",
-            "modified": "2024-05-01T20:31:52.503Z",
+            "modified": "2024-05-03T01:03:20.895Z",
             "headers": []
         },
         {
@@ -57,13 +57,13 @@
             "colId": "7ef468e5-a4a9-4db2-a49e-2352e838002b",
             "containerId": "",
             "name": "DELETE_Bedrooms",
-            "url": "http://localhost:3000/hoteles/v1/bedrom/66329714bc9cf985a68359b5",
+            "url": "http://localhost:3000/hoteles/v1/bedrom/663436330afc65de814ffbf8",
             "method": "DELETE",
             "sortNum": 50000,
             "created": "2024-05-01T21:09:22.959Z",
-            "modified": "2024-05-01T21:10:24.129Z",
+            "modified": "2024-05-03T01:04:02.579Z",
             "headers": []
         }
     ],
-    "ref": "K7tPJqZ7aX9OLtIoEU9v-gDQpPip5qjjboMx6Do_b0TjRKKX8CsCEIPqyp1I8g1Yzt4MFR1G6py6-9O7IhGLOA"
+    "ref": "K7tPJqZ7aX9OLtIoEU9v-n1w55YFyoaQaPY48fyfvbkXnB__-6C-hs0B174uKz97Q4hmit-nVTalK-VIvZRTxg"
 }
