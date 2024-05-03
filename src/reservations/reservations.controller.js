@@ -34,7 +34,7 @@ export const reservacionPost = async (req, res) => {
     const usuarioId = req.usuario.id;
 
     try {
-        const habitacionExistente = await Habitacion.findById(habitacionId);
+        const habitacionExistente = await Habitacion.findOne({_id: habitacionId});
         if (!habitacionExistente) {
             return res.status(404).json({ error: 'Habitación no encontrada' });
         }

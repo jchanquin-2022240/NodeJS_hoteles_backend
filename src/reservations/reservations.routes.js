@@ -36,8 +36,8 @@ router.post(
             return validarFechar(req.body.fechaInicio, req.body.fechaFin);
         }),
         check("huespedes", "El número de huéspedes es obligatorio").not().isEmpty(),
-        check("huespedes", "Número de huéspedes debe ser un número entero positivo").isInt({ min: 1 }),
-        check("huespedes").custom(validarNumeroHuespedes),
+        check("huespedes", "Número de huéspedes debe ser un número entero positivo").not().isInt({ min: 1 }),
+        // La verdad lo veo innecesario esto ---> check("huespedes").custom(validarNumeroHuespedes),
         check(["habitacionId", "fechaInicio", "fechaFin"]).custom(async (value, { req }) => {
             const { habitacionId, fechaInicio, fechaFin } = req.body;
             return validarDisponibilidad(habitacionId, fechaInicio, fechaFin);

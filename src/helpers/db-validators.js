@@ -111,8 +111,6 @@ export const validarNumeroHuespedes = (huespedes) => {
         throw new Error('Número de huéspedes debe ser un número entero positivo');
     }
 }
-
-
 export const validarCapacidad = async (habitacionId, numeroHuespedes) => {
     const habitacion = await Habitacion.findById(habitacionId);
     if (!habitacion) {

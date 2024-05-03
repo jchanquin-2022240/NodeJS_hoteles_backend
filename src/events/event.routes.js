@@ -34,7 +34,7 @@ router.post(
 
 router.get("/", eventsGet)
 
-router.delete("/:id", [check("id", "It is not an id not valid").isMongoId(), validationFields], eventDelete)
+router.delete("/:id", [check("id", "It is not an id not valid").isMongoId(), validarCampos], eventDelete)
 
 router.put("/:id",
     [
@@ -44,11 +44,11 @@ router.put("/:id",
         check("id", "It is not a mongo id").isMongoId(),
         validarCampos], eventPut)
 
-router.get("/searching", [check("nameEvent", "You need the name of event for search one"), validationFields], getEventForName)
+router.get("/searching", [check("nameEvent", "You need the name of event for search one"), validarCampos], getEventForName)
 
 router.post("/resourcesAdd/:id", [check("id", "It is not a mongo id").isMongoId(),], resourcesAddPost)
 
-router.post("/addtionalServiceAdd", [check("additionalServices", "The services is empty").not().isEmpty(), validationFields], additionalServicesPost)
+router.post("/addtionalServiceAdd", [check("additionalServices", "The services is empty").not().isEmpty(), validarCampos], additionalServicesPost)
 
 router.post("/deleteAddiotionalService",
     [

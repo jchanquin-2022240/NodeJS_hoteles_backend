@@ -10,7 +10,7 @@ import authRoutes from '../src/auth/auth.routes.js'
 import hotelRoutes from '../src/hoteles/hotel.routes.js'
 import habitacionesRoutes from '../src/bedrooms/bedrooms.routes.js'
 import reservacionRoutes from '../src/reservations/reservations.routes.js'
-import eventRoutes from '../src/events/event.js'
+import eventRoutes from '../src/events/event.routes.js'
 import resourceRoutes from '../src/resource/resource.routes.js'
 
 class Server{
