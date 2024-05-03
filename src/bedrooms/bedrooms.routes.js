@@ -1,4 +1,3 @@
-// Importa solo los controladores y validadores necesarios
 import { Router } from 'express';
 import { check } from 'express-validator';
 import { validarCampos } from '../middlewares/validar-campos.js';

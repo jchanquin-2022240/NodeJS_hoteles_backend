@@ -9,7 +9,6 @@ export const validarNumeroHabitacionUnico = async (numero) => {
     }
 };
 
-
 export const validarExistenciaHabitacion = async (habitacionId) => {
     const habitacion = await Habitacion.findById(habitacionId);
     if (!habitacion) {

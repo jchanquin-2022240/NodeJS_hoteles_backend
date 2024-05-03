@@ -2,8 +2,7 @@ import { response } from "express";
 import Habitacion from './bedrooms.model.js';
 import Reservacion from '../reservations/reservations.model.js';
 import {
-    validarNumeroHabitacionUnico,
-    validarCapacidadHabitacion
+    validarNumeroHabitacionUnico
 } from "../helpers/db-validators.js";
 
 export const habitacionPost = async (req, res) => {
@@ -11,9 +10,6 @@ export const habitacionPost = async (req, res) => {
         const { numero, tipo, capacidad, precio, estado } = req.body;
 
         await validarNumeroHabitacionUnico(numero);
-
-        // Validar la capacidad de la habitación
-        validarCapacidadHabitacion(capacidad);
 
         const habitacion = new Habitacion({ numero, tipo, capacidad, precio, estado });
         await habitacion.save();
@@ -23,7 +19,6 @@ export const habitacionPost = async (req, res) => {
             habitacion
         });
     } catch (error) {
-        // Manejar el error de validación de capacidad de la habitación
         if (error.message === 'La capacidad de la habitación debe ser mayor que cero') {
             return res.status(400).json({ error: error.message });
         }
