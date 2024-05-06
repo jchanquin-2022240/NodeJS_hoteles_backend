@@ -1,0 +1,74 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "Hoteles",
+    "collectionId": "da12559c-0df7-43fd-8b92-4a54511be538",
+    "dateExported": "2024-05-06T21:33:44.332Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "6aad62a7-5f34-4c2d-8ccc-2b2d930b888f",
+            "colId": "da12559c-0df7-43fd-8b92-4a54511be538",
+            "containerId": "",
+            "name": "post hotel",
+            "url": "http://localhost:3000/hoteles/v1/hotel/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-04-30T22:33:52.980Z",
+            "modified": "2024-04-30T22:39:16.492Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjMxNTY3ZjdlYWYyNDU3MWEyZjZkNjAiLCJpYXQiOjE3MTQ1MTY3NDksImV4cCI6MTcxNjMxNjc0OX0.6qZvGQr60citAYqng1uhLvs5FQjJ5gLWfjQwzYSeDFA"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nameHotel\": \"America\",\n  \"description\": \"Hotel de 5 estreñas al interperie\",\n  \"installations\": \"100 habitaciones\",\n  \"location\": \"av los arboles\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "aeebd287-204d-49a8-b575-e26f37c715cc",
+            "colId": "da12559c-0df7-43fd-8b92-4a54511be538",
+            "containerId": "",
+            "name": "get hoteles",
+            "url": "http://localhost:3000/hoteles/v1/hotel/hotels",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-04-30T22:40:28.949Z",
+            "modified": "2024-04-30T22:41:19.175Z",
+            "headers": []
+        },
+        {
+            "_id": "0db030c1-c007-409f-841d-7ebcb3f2f694",
+            "colId": "da12559c-0df7-43fd-8b92-4a54511be538",
+            "containerId": "",
+            "name": "put hoteles",
+            "url": "http://localhost:3000/hoteles/v1/hotel/6631734a61ec384fd68029b2",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-04-30T22:42:19.582Z",
+            "modified": "2024-04-30T22:44:02.734Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nameHotel\": \"Los tucanes\",\n  \"description\": \"comodida 100%\",\n  \"installations\": \"500 habitaciones\",\n  \"location\": \"av las americas\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "c536c367-b7dd-433a-9a71-71ec20e752bd",
+            "colId": "da12559c-0df7-43fd-8b92-4a54511be538",
+            "containerId": "",
+            "name": "delete hoteles",
+            "url": "http://localhost:3000/hoteles/v1/hotel/6631734a61ec384fd68029b2",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2024-04-30T22:44:17.097Z",
+            "modified": "2024-04-30T22:44:30.674Z",
+            "headers": []
+        }
+    ],
+    "ref": "90-gXgNtYQZdKkvyM8ZFgy53mKv2w3e020QyB50t_1GM6yoGgT894mJMSQy7l6V665OoTbgD2tn1N9UeIjIl7Q"
+}

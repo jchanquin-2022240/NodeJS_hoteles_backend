@@ -1,0 +1,69 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "register",
+    "collectionId": "e1d6e925-e341-450e-9d3b-e976f0ff7611",
+    "dateExported": "2024-05-06T21:33:17.569Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "34d87d69-d2a8-44f6-a802-94f34c76875d",
+            "colId": "e1d6e925-e341-450e-9d3b-e976f0ff7611",
+            "containerId": "",
+            "name": "post register",
+            "url": "http://localhost:3000/hoteles/v1/users/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-04-30T20:07:14.450Z",
+            "modified": "2024-04-30T20:37:19.448Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user2\",\n  \"password\": \"123456\",\n  \"email\": \"user2@gmail.com\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "529beb4e-8fb8-42f1-95d9-0a0fd53d6b38",
+            "colId": "e1d6e925-e341-450e-9d3b-e976f0ff7611",
+            "containerId": "",
+            "name": "get register",
+            "url": "http://localhost:3000/hoteles/v1/users/",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-04-30T20:28:15.065Z",
+            "modified": "2024-04-30T20:28:23.634Z",
+            "headers": []
+        },
+        {
+            "_id": "7724cec7-e146-4809-b394-6604fa49474d",
+            "colId": "e1d6e925-e341-450e-9d3b-e976f0ff7611",
+            "containerId": "",
+            "name": "put register",
+            "url": "http://localhost:3000/hoteles/v1/users/settings/663153d96a60e5261117ba03",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-04-30T20:28:53.790Z",
+            "modified": "2024-04-30T20:30:34.737Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"admin1\",\n  \"password\": \"123456\",\n  \"email\": \"admin1@gmail.com\",\n  \"role\": \"ADMIN_ROLE\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "10eba731-a537-4436-8cfc-dbd5fe7236de",
+            "colId": "e1d6e925-e341-450e-9d3b-e976f0ff7611",
+            "containerId": "",
+            "name": "delete register",
+            "url": "http://localhost:3000/hoteles/v1/users/settings/663153d96a60e5261117ba03",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2024-04-30T20:30:49.404Z",
+            "modified": "2024-04-30T20:31:24.200Z",
+            "headers": []
+        }
+    ],
+    "ref": "l9dD5sMSFVJ7the9ltw20SXyPLs6Phs39iwd1UdXozAJdE2hpnRVbed1XNVLRBB4TA4-QNC4eltQWKWl4XloQQ"
+}

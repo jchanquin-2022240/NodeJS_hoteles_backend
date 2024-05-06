@@ -1,0 +1,33 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "habitaciones",
+    "collectionId": "b8ad3189-bdcc-49c3-996e-bf7f70fed01b",
+    "dateExported": "2024-05-06T21:33:37.532Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "df8cb734-709f-454d-a7b2-a25ec4b257e7",
+            "colId": "b8ad3189-bdcc-49c3-996e-bf7f70fed01b",
+            "containerId": "",
+            "name": "post habitaciones",
+            "url": "http://localhost:3000/hoteles/v1/habitacion",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-04-30T22:56:01.215Z",
+            "modified": "2024-05-06T20:49:30.427Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjMxNTM5ZTZhNjBlNTI2MTExN2I5ZmYiLCJpYXQiOjE3MTUwMjgwNDIsImV4cCI6MTcxNjgyODA0Mn0.bX-QFaorBgYb1h6kWC2sUf1vttqqMhaYprv_yl8DF20"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"numero\": \"105\",\n    \"tipo\": \"individual\",\n    \"capacidad\": 1,\n    \"precio\": 100\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "KtbjBCJYlUcF2rFJ7-VgbvUiHIY1plz6i997Dm3j1KLp-4ZfIDE4MpDKJdywCAZIs3vTPIarcXa3h2p_wMbD4A"
+}
