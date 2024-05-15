@@ -18,6 +18,11 @@ const HabitacionSchema = mongoose.Schema({
         type: Number,
         required: [true, 'Price is required'],
     },
+    hotel: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Hotel',
+        required: true
+    },
     reservaciones: [{
         type: Schema.Types.ObjectId,
         ref: 'Reservacion',

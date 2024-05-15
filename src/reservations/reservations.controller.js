@@ -31,7 +31,7 @@ export const reservacionPost = async (req, res) => {
     }
 
     const { habitacionId, fechaInicio, fechaFin, huespedes } = req.body;
-    const usuarioId = req.usuario.id;
+    /*const usuarioId = req.usuario.id;*/
 
     try {
         const habitacionExistente = await Habitacion.findOne({_id: habitacionId});
@@ -42,7 +42,7 @@ export const reservacionPost = async (req, res) => {
         const precioReservacion = await calcularPrecioReservacion(habitacionId, fechaInicio, fechaFin);
 
         const reservacion = new Reservacion({
-            usuario: usuarioId,
+            //usuario: usuarioId,
             habitacion: habitacionId,
             fechaInicio,
             fechaFin,

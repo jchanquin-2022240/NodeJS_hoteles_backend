@@ -24,6 +24,7 @@ router.post("/", [
     check("tipo", "El tipo de habitación es obligatorio").not().isEmpty(),
     check("capacidad", "La capacidad de la habitación es obligatoria").not().isEmpty().isNumeric(),
     check("precio", "El precio de la habitación es obligatorio").not().isEmpty().isNumeric(),
+    check("idHotel", "El ID del hotel es obligatorio").not().isEmpty(),
     validarCampos
 ],
     habitacionPost);

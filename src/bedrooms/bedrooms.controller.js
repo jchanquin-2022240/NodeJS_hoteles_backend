@@ -1,17 +1,30 @@
 import { response } from "express";
 import Habitacion from './bedrooms.model.js';
 import Reservacion from '../reservations/reservations.model.js';
+import Hotel from '../hoteles/hotel.model.js';
 import {
     validarNumeroHabitacionUnico
 } from "../helpers/db-validators.js";
 
 export const habitacionPost = async (req, res) => {
     try {
-        const { numero, tipo, capacidad, precio } = req.body;
+        const { numero, tipo, capacidad, precio, idHotel } = req.body;
+
+        const hotel = await Hotel.findById(idHotel);
+
+        if(!hotel){
+            return res.status(404).json({msg: 'Hotel not found'});
+        }
+
 
         await validarNumeroHabitacionUnico(numero);
 
-        const habitacion = new Habitacion({ numero, tipo, capacidad, precio });
+        const habitacion = new Habitacion({ numero, 
+            tipo, 
+            capacidad, 
+            precio,
+            hotel: idHotel
+        });
         await habitacion.save();
 
         res.status(200).json({
