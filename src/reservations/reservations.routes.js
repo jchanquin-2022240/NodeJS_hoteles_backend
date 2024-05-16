@@ -27,7 +27,7 @@ router.get("/", getReservaciones);
 router.post(
     "/",
     [
-        /*validarJWT*/
+        //validarJWT,
         check("habitacionId", "El ID de la habitación es obligatorio").not().isEmpty(),
         check("habitacionId").custom(validarCapacidad),
         check("fechaInicio", "La fecha de inicio es obligatoria").not().isEmpty(),
@@ -51,7 +51,7 @@ router.post(
 router.delete(
     "/:id",
     [
-        validarJWT,
+        //validarJWT,
         check("id", "No es un ID válido").isMongoId(),
         check("id").custom(existeReservacionById),
         validarCampos
@@ -62,7 +62,7 @@ router.delete(
 router.put(
     "/:id",
     [
-        validarJWT,
+        //validarJWT,
         check("id", "No es un ID válido").isMongoId(),
         check("id").custom(existeReservacionById),
         validarCampos

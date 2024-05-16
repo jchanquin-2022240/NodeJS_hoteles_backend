@@ -2,6 +2,7 @@
 import { validationResult } from 'express-validator';
 import Reservacion from './reservations.model.js';
 import Habitacion from '../bedrooms/bedrooms.model.js';
+//import Usuario from '../user/user.model.js';
 
 
 const calcularPrecioReservacion = async (habitacionId, fechaInicio, fechaFin) => {
@@ -31,7 +32,7 @@ export const reservacionPost = async (req, res) => {
     }
 
     const { habitacionId, fechaInicio, fechaFin, huespedes } = req.body;
-    /*const usuarioId = req.usuario.id;*/
+    //const usuario = req.usuario;
 
     try {
         const habitacionExistente = await Habitacion.findOne({_id: habitacionId});
@@ -39,13 +40,16 @@ export const reservacionPost = async (req, res) => {
             return res.status(404).json({ error: 'Habitación no encontrada' });
         }
 
-        const precioReservacion = await calcularPrecioReservacion(habitacionId, fechaInicio, fechaFin);
+        const fechaInicioDate = new Date(fechaInicio);
+        const fechaFinDate = new Date(fechaFin);
+
+        const precioReservacion = await calcularPrecioReservacion(habitacionId, fechaInicioDate, fechaFinDate);
 
         const reservacion = new Reservacion({
-            //usuario: usuarioId,
+            //usuario,
             habitacion: habitacionId,
-            fechaInicio,
-            fechaFin,
+            fechaInicio: fechaInicioDate,
+            fechaFin: fechaFinDate,
             huespedes,
             estado: 'pendiente',
             pago: precioReservacion
@@ -60,7 +64,19 @@ export const reservacionPost = async (req, res) => {
     }
 };
 
+
 export const getReservaciones = async (req, res) => {
+    try {
+        // Obtener todas las reservaciones sin filtrar por usuario
+        const reservaciones = await Reservacion.find().populate('habitacion');
+
+        res.status(200).json({ reservaciones });
+    } catch (error) {
+        console.error('Error al obtener las reservaciones:', error);
+        res.status(500).json({ error: 'Error al obtener las reservaciones' });
+    }
+};
+/*export const getReservaciones = async (req, res) => {
     const usuarioId = req.usuario.id;
 
     try {
@@ -71,9 +87,29 @@ export const getReservaciones = async (req, res) => {
         console.error('Error al obtener las reservaciones:', error);
         res.status(500).json({ error: 'Error al obtener las reservaciones' });
     }
-};
+};*/
 
 export const reservacionPut = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const reservacionExistente = await Reservacion.findById(id);
+        if (!reservacionExistente) {
+            return res.status(404).json({ error: 'Reservación no encontrada' });
+        }
+
+        // Comprueba si la reservación existe y luego actualiza directamente
+        const { _id, ...resto } = req.body;
+        const reservacionActualizada = await Reservacion.findByIdAndUpdate(id, resto, { new: true });
+
+        res.status(200).json({ mensaje: 'Reservación actualizada exitosamente', reservacion: reservacionActualizada });
+    } catch (error) {
+        console.error('Error al actualizar la reservación:', error);
+        res.status(500).json({ error: 'Error al actualizar la reservación' });
+    }
+};
+
+/*export const reservacionPut = async (req, res) => {
     const { id } = req.params;
     const usuarioId = req.usuario.id;
 
@@ -95,9 +131,29 @@ export const reservacionPut = async (req, res) => {
         console.error('Error al actualizar la reservación:', error);
         res.status(500).json({ error: 'Error al actualizar la reservación' });
     }
-};
+};*/
+
 
 export const reservacionDelete = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const reservacionExistente = await Reservacion.findById(id);
+        if (!reservacionExistente) {
+            return res.status(404).json({ error: 'Reservación no encontrada' });
+        }
+
+        // Elimina la reservación directamente sin verificar el usuario
+        await Reservacion.findByIdAndDelete(id);
+
+        res.status(200).json({ mensaje: 'Reservación eliminada exitosamente' });
+    } catch (error) {
+        console.error('Error al eliminar la reservación:', error);
+        res.status(500).json({ error: 'Error al eliminar la reservación' });
+    }
+};
+
+/*export const reservacionDelete = async (req, res) => {
     const { id } = req.params;
     const usuarioId = req.usuario.id;
 
@@ -118,4 +174,4 @@ export const reservacionDelete = async (req, res) => {
         console.error('Error al eliminar la reservación:', error);
         res.status(500).json({ error: 'Error al eliminar la reservación' });
     }
-};
+};*/

@@ -2,11 +2,11 @@
 import mongoose, { Schema } from 'mongoose';
 
 const ReservacionSchema = mongoose.Schema({
-    usuario: {
+    /*usuario: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Usuario',
         required: true
-    },
+    },*/
     habitacion: {
         type: Schema.Types.ObjectId,
         ref: 'Habitacion',
