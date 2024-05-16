@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "d1fe622c-e582-4ebf-8ac4-fdd53fe49061",
+		"name": "hotelCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32791973"
+	},
+	"item": [
+		{
+			"name": "addHotel",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nameHotel\": \"Porta Hotel Antigua\",\r\n    \"description\": \"Hotel No.1 en Antigua Guatemala\",\r\n    \"installations\": \"300 habitaciones\",\r\n    \"location\": \"Antigua\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/hotel/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"hotel",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putHotel",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nameHotel\": \"Porta Hotel Antigua Guatemala\",\r\n    \"description\": \"El mejor hotel en Antigua Guatemala\",\r\n    \"installations\": \"500 habitaciones\",\r\n    \"location\": \"Santiago de los Caballeros\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/hotel/66453b0cafd854ece010b5fc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"hotel",
+						"66453b0cafd854ece010b5fc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getHotel",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/hotel/hotels",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"hotel",
+						"hotels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteHotel",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/hotel/66453b0cafd854ece010b5fc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"hotel",
+						"66453b0cafd854ece010b5fc"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

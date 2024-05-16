@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "f34c93e8-3705-465f-b53b-c7207704f0a0",
+		"name": "reservacionCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32791973"
+	},
+	"item": [
+		{
+			"name": "addReservacion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjQ1MzllYWFmZDg1NGVjZTAxMGI1ZjEiLCJpYXQiOjE3MTU4MTY1MDAsImV4cCI6MTcxNzYxNjUwMH0.Yghw3Wxi4xLq4PIXniE3GOX_BzRJ3qN4N2xFWumeRcI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"habitacionId\": \"6645416352ef4a9ebe8b5d45\",\r\n    \"fechaInicio\": \"05-18-2024\",\r\n    \"fechaFin\": \"05-19-2024\",\r\n    \"huespedes\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/reservacion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"reservacion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getReservacion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/reservacion/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"reservacion",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putReservacion",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"habitacionId\": \"6645416352ef4a9ebe8b5d45\",\r\n    \"fechaInicio\": \"05-20-2024\",\r\n    \"fechaFin\": \"05-24-2024\",\r\n    \"huespedes\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/reservacion/66454aed4083ef3050f26dc0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"reservacion",
+						"66454aed4083ef3050f26dc0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteReservacion",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/reservacion/66454aed4083ef3050f26dc0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"reservacion",
+						"66454aed4083ef3050f26dc0"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

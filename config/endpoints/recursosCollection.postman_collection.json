@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "f4182e03-ff0e-4261-a84b-cedb599cd7f2",
+		"name": "recursosCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32791973"
+	},
+	"item": [
+		{
+			"name": "addRecurso",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"namePackage\": \"Familiar\",\r\n    \"description\": \"10 cheff,30 meseros, 10 resesionistas, seguridad del hotel\",\r\n    \"price\": 300\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/resource/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"resource",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRecursos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/resource/package",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"resource",
+						"package"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putRecurso",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"namePackage\": \"Family Comb\",\r\n    \"description\": \"10 cheff,30 meseros, 10 resesionistas, seguridad del hotel\",\r\n    \"price\": 500\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/resource/update/66454ea2990d2957999d0969",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"resource",
+						"update",
+						"66454ea2990d2957999d0969"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
