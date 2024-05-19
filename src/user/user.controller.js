@@ -102,10 +102,10 @@ export const newUser = async () => {
             console.log('El Admin ya existe');
         } else {
             const newAdmin = new User({
-                username: 'admin-role',
-                email: 'admin-role@gmail.com',
+                username: 'admin-plataform',
+                email: 'admin-plataform@gmail.com',
                 password: '123456',
-                role: 'ADMIN_ROLE'
+                role: 'SYSTEM_ADMIN_ROLE'
             });
 
             const salt = bcryptjs.genSaltSync();

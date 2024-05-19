@@ -12,7 +12,7 @@ import {
 import { existsHotel, existsNameHotel, existsLocation, hotelStatus } from "../helpers/db-validators.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
-import { esAdmin } from "../middlewares/verificar-role.js";
+import { esSystemAdmin, esAdmin} from "../middlewares/verificar-role.js";
 
 const router = Router();
 
@@ -20,6 +20,7 @@ router.post(
     "/",
     [
         validarJWT,
+        esSystemAdmin,
         esAdmin,
         check("nameHotel", "The name of hotel can not be empty").not().isEmpty(),
         check("nameHotel").custom(existsNameHotel),
@@ -35,6 +36,9 @@ router.post(
 router.post(
     "/:idHotel/bedroom",
     [
+        validarJWT,
+        esSystemAdmin,
+        esAdmin,
         check("idHotel", "Invalid hotel ID").isMongoId(),
         check("idBedroom", "Invalid bedroom ID").isMongoId(),
         validarCampos
@@ -46,7 +50,7 @@ router.delete(
     "/:idHotel/bedroom",
     [
         validarJWT,
-        esAdmin,
+        esSystemAdmin,
         check("idHotel", "Invalid hotel ID").isMongoId(),
         check("idBedroom", "Invalid bedroom ID").isMongoId(),
         validarCampos
@@ -56,11 +60,16 @@ router.delete(
 
 router.get(
     "/",
+    validarJWT,
+    esSystemAdmin,
+    esAdmin,
     getHotels
 )
 
 router.get(
     "/hotels",
+    validarJWT,
+    esAdmin,
     getHotelsAvailable
 )
 
@@ -68,7 +77,7 @@ router.put(
     "/:id",
     [
         validarJWT,
-        esAdmin,
+        esSystemAdmin,
         check("id", "Invalid hotel ID").isMongoId(),
         check("id").custom(existsHotel),
         check("nameHotel").custom(existsNameHotel),
@@ -82,7 +91,7 @@ router.delete(
     "/:id",
     [
         validarJWT,
-        esAdmin,
+        esSystemAdmin,
         check("id", "Invalid hotel ID").isMongoId(),
         check("id").custom(existsHotel),
         check("id").custom(hotelStatus),
