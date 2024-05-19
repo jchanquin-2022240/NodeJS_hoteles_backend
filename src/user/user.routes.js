@@ -4,6 +4,8 @@ import { registerUser, getUser, updateUser, deleteUser } from "./user.controller
 
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { existenteEmail, existenteUsername } from "../helpers/db-validators.js";
+import { esUser, esAdminOrSystemAdmin } from "../middlewares/verificar-role.js";
+import { validarJWT } from "../middlewares/validar-jwt.js";
 
 const router = Router()
 
@@ -23,12 +25,16 @@ router.post(
 
 router.get(
     '/',
+    validarJWT,
+    esAdminOrSystemAdmin,
     getUser
 )
 
 router.put(
     "/settings/:id",
     [
+        validarJWT,
+        esUser,
         check("id", "This is an invalid id").isMongoId(),
         validarCampos
     ],
@@ -38,6 +44,8 @@ router.put(
 router.delete(
     "/settings/:id",
     [
+        validarJWT,
+        esUser,
         check("id", "This is an invalid id").isMongoId(),
         validarCampos
     ],

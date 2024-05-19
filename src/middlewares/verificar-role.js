@@ -18,6 +18,19 @@ export const esAdmin = (req, res, next) => {
     });
 };
 
+export const esAdminOrSystemAdmin = (req, res, next) => {
+    const user = req.usuario;
+
+    if (user.role === "SYSTEM_ADMIN_ROLE" || user.role === "ADMIN_ROLE") {
+        return next();
+    }
+
+    return res.status(400).json({
+        msg: "No tienes acceso, solo Administradores o Desarrolladores"
+    });
+};
+
+
 export const esUser = (req, res, next) => {
     const user = req.usuario;
 
