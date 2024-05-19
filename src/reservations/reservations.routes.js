@@ -17,15 +17,17 @@ import {
 
 import { validarCampos } from '../middlewares/validar-campos.js';
 import { validarJWT } from '../middlewares/validar-jwt.js';
+import { esAdmin, esUser } from '../middlewares/verificar-role.js';
 
 const router = Router();
 
-router.get("/", getReservaciones);
+router.get("/", validarJWT, esAdmin, getReservaciones);
 
 router.post(
     "/",
     [
-        //validarJWT,
+        validarJWT,
+        esUser,
         check("habitacionId", "El ID de la habitación es obligatorio").not().isEmpty(),
         check("habitacionId").custom(validarCapacidad),
         check("fechaInicio", "La fecha de inicio es obligatoria").not().isEmpty(),
@@ -49,7 +51,8 @@ router.post(
 router.delete(
     "/:id",
     [
-        //validarJWT,
+        validarJWT,
+        esAdmin,
         check("id", "No es un ID válido").isMongoId(),
         check("id").custom(existeReservacionById),
         validarCampos
@@ -60,7 +63,8 @@ router.delete(
 router.put(
     "/:id",
     [
-        //validarJWT,
+        validarJWT,
+        esAdmin,
         check("id", "No es un ID válido").isMongoId(),
         check("id").custom(existeReservacionById),
         validarCampos
