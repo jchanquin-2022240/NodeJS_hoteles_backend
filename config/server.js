@@ -12,6 +12,7 @@ import habitacionesRoutes from '../src/bedrooms/bedrooms.routes.js'
 import reservacionRoutes from '../src/reservations/reservations.routes.js'
 import eventRoutes from '../src/events/event.routes.js'
 import resourceRoutes from '../src/resource/resource.routes.js'
+import { newUser } from '../src/user/user.controller.js'
 
 class Server{
     constructor(){
@@ -33,7 +34,9 @@ class Server{
     }
 
     async conectarDB(){
-        await dbConnection()
+        await dbConnection();
+        await newUser();
+
     }
 
     middlewares(){

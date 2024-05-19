@@ -92,3 +92,29 @@ export const deleteUser = async (req, res) => {
         res.status(500).json({ error: 'Error when deleting user' });
     }
 }
+
+
+export const newUser = async () => {
+    try {
+        const existingAdmin = await User.findOne({ email: "admin-role@gmail.com" });
+
+        if (existingAdmin) {
+            console.log('El Admin ya existe');
+        } else {
+            const newAdmin = new User({
+                username: 'admin-role',
+                email: 'admin-role@gmail.com',
+                password: '123456',
+                role: 'ADMIN_ROLE'
+            });
+
+            const salt = bcryptjs.genSaltSync();
+            newAdmin.password = bcryptjs.hashSync(newAdmin.password, salt);
+
+            await newAdmin.save();
+            console.log("User created successfully", newAdmin);
+        }
+    } catch (error) {
+        console.error("Error creating admin user:", error);
+    }
+}

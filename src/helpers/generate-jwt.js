@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-export const generarJWT = (uid = ' ') => {
+export const generarJWT = (uid) => {
     return new Promise((resolve, reject) => {
         const payload = { uid };
         jwt.sign(
@@ -10,8 +10,13 @@ export const generarJWT = (uid = ' ') => {
                 expiresIn: '500h'
             },
             (err, token) => {
-                err ? (console.log(err),reject('Canot generate token')) : resolve(token);
+                if (err) {
+                    console.error(err);
+                    reject('No se pudo generar el token');
+                } else {
+                    resolve(token);
+                }
             }
         )
-    })
+    });
 }
