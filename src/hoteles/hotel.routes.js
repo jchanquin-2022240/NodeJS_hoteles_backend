@@ -32,11 +32,21 @@ router.post(
 
 router.post(
     "/:idHotel/bedroom",
+    [
+        check("idHotel", "Invalid hotel ID").isMongoId(),
+        check("idBedroom", "Invalid bedroom ID").isMongoId(),
+        validarCampos
+    ],
     addBedroom
 )
 
 router.delete(
     "/:idHotel/bedroom",
+    [
+        check("idHotel", "Invalid hotel ID").isMongoId(),
+        check("idBedroom", "Invalid bedroom ID").isMongoId(),
+        validarCampos
+    ],
     removeBedroom
 )
 
@@ -53,7 +63,7 @@ router.get(
 router.put(
     "/:id",
     [
-        check("id", "This is an invalid id").isMongoId(),
+        check("id", "Invalid hotel ID").isMongoId(),
         check("id").custom(existsHotel),
         check("nameHotel").custom(existsNameHotel),
         check("location").custom(existsLocation),
@@ -65,7 +75,7 @@ router.put(
 router.delete(
     "/:id",
     [
-        check("id", "This is an invalid id").isMongoId(),
+        check("id", "Invalid hotel ID").isMongoId(),
         check("id").custom(existsHotel),
         check("id").custom(hotelStatus),
         validarCampos

@@ -1,5 +1,6 @@
 import { response, request } from "express";
 import Hotel from './hotel.model.js';
+import Bedroom from '../bedrooms/bedrooms.model.js';
 
 export const createHotel = async (req, res) => {
     try {
@@ -27,11 +28,7 @@ export const addBedroom = async (req, res) => {
         const hotel = await Hotel.findById(idHotel);
 
         if (!hotel) {
-            return res.status(404).json({ error: `${hotel.nameHotel} not found` });
-        }
-
-        if (!idBedroom) {
-            return res.status(400).json({ error: 'Bedroom ID is required' });
+            return res.status(404).json({ error: 'Hotel not found' });
         }
 
         const bedroom = await Bedroom.findById(idBedroom);
@@ -69,11 +66,7 @@ export const removeBedroom = async (req, res) => {
         const hotel = await Hotel.findById(idHotel);
 
         if (!hotel) {
-            return res.status(404).json({ error: `${hotel.nameHotel} not found` });
-        }
-
-        if (!idBedroom) {
-            return res.status(400).json({ error: 'Bedroom ID is required' });
+            return res.status(404).json({ error: 'Hotel not found' });
         }
 
         const index = hotel.bedrooms.indexOf(idBedroom);
@@ -91,8 +84,6 @@ export const removeBedroom = async (req, res) => {
         return res.status(500).json({ error: 'Internal server error' });
     }
 };
-
-// visualizacion para administradores
 
 export const getHotels = async (req, res) => {
 
@@ -118,8 +109,6 @@ export const getHotels = async (req, res) => {
         res.status(500).json({ error: 'Error getting hotels' });
     }
 };
-
-// visualizacion para usuarios
 
 export const getHotelsAvailable = async (req, res) => {
     try {

@@ -12,20 +12,18 @@ export const habitacionPost = async (req, res) => {
 
         const hotel = await Hotel.findById(idHotel);
 
-        if(!hotel){
-            return res.status(404).json({msg: 'Hotel not found'});
+        if (!hotel) {
+            return res.status(404).json({ msg: 'Hotel not found' });
         }
-
 
         await validarNumeroHabitacionUnico(numero);
 
-        const habitacion = new Habitacion({ numero, 
-            tipo, 
-            capacidad, 
-            precio,
-            hotel: idHotel
-        });
+        const habitacion = new Habitacion({ numero, tipo, capacidad, precio, hotel: idHotel });
         await habitacion.save();
+
+        // Agregar el ID de la habitación al arreglo de habitaciones del hotel
+        hotel.bedrooms.push(habitacion._id);
+        await hotel.save();
 
         res.status(200).json({
             msg: '¡Habitación creada exitosamente!',
@@ -39,7 +37,6 @@ export const habitacionPost = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
-
 
 export const habitacionPut = async (req, res) => {
     try {

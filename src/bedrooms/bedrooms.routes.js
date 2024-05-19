@@ -1,4 +1,3 @@
-
 import { Router } from 'express';
 import { check } from 'express-validator';
 import { validarCampos } from '../middlewares/validar-campos.js';
@@ -27,7 +26,7 @@ router.post("/", [
     check("idHotel", "El ID del hotel es obligatorio").not().isEmpty(),
     validarCampos
 ],
-    habitacionPost);
+habitacionPost);
 
 
 router.put("/:id", [
@@ -35,7 +34,8 @@ router.put("/:id", [
     check("id").custom(validarExistenciaHabitacion),
     check("numero").custom(validarNumeroHabitacionUnico),
     validarCampos
-], habitacionPut);
+], 
+habitacionPut);
 
 
 router.delete("/:id", [
@@ -43,6 +43,7 @@ router.delete("/:id", [
     check("id").custom(validarExistenciaHabitacion),
     check("id").custom(validarReservacionesAsociadas),
     validarCampos
-], habitacionDelete);
+], 
+habitacionDelete);
 
 export default router;
