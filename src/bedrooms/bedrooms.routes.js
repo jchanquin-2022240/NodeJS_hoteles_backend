@@ -13,11 +13,16 @@ import {
     validarReservacionesAsociadas
 } from "../helpers/db-validators.js";
 
+import { validarJWT } from '../middlewares/validar-jwt.js';
+import { esSystemAdmin } from '../middlewares/verificar-role.js';
+
 const router = Router();
 
 router.get("/", habitacionGet);
 
 router.post("/", [
+    validarJWT,
+    esSystemAdmin,
     check("numero", "El número de habitación es obligatorio").not().isEmpty(),
     check("numero").custom(validarNumeroHabitacionUnico),
     check("tipo", "El tipo de habitación es obligatorio").not().isEmpty(),
@@ -30,6 +35,8 @@ habitacionPost);
 
 
 router.put("/:id", [
+    validarJWT,
+    esSystemAdmin,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(validarExistenciaHabitacion),
     check("numero").custom(validarNumeroHabitacionUnico),
@@ -39,6 +46,8 @@ habitacionPut);
 
 
 router.delete("/:id", [
+    validarJWT,
+    esSystemAdmin,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(validarExistenciaHabitacion),
     check("id").custom(validarReservacionesAsociadas),

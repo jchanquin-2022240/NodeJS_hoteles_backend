@@ -60,14 +60,12 @@ router.get(
     "/",
     validarJWT,
     esSystemAdmin,
-    esAdmin,
     getHotels
 )
 
 router.get(
     "/hotels",
     validarJWT,
-    esAdmin,
     getHotelsAvailable
 )
 
