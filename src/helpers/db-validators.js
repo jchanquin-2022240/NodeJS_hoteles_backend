@@ -4,6 +4,7 @@ import Hotel from '../hoteles/hotel.model.js';
 import Habitacion from '../bedrooms/bedrooms.model.js';
 import Reservacion from '../reservations/reservations.model.js';
 import Event from '../events/event.js';
+import Resource from '../resource/resource.js';
 
 export const esRoleValido = async (role = '') => {
     const existeRol = await Role.findOne({role});
@@ -149,5 +150,14 @@ export const existingNameEvent = async (nameEvent = '') => {
     const existingNameEventXD = await Event.findOne({ nameEvent: nameEvent });
     if (existingNameEventXD) {
         throw new Error(`The name event ${nameEvent} does exist in the database`);
+    }
+}
+
+//resource
+
+export const existingNamePackage = async (namePackage = '') => {
+    const existingNamePackageXD = await Resource.findOne({ namePackage: namePackage });
+    if (existingNamePackageXD) {
+        throw new Error(`El namePackage ${namePackage} ya existe en la base de datos`);
     }
 }

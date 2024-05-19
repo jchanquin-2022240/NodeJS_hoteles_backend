@@ -7,7 +7,7 @@ export const resourcePost = async (req, res) => {
 
     await resource.save();
 
-    res.status(200).json({ msg: "Resource created successfully" });
+    res.status(200).json({ msg: "Resource created successfully"});
 }
 
 //get
