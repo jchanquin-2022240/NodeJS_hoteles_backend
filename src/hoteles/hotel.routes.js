@@ -21,7 +21,6 @@ router.post(
     [
         validarJWT,
         esSystemAdmin,
-        esAdmin,
         check("nameHotel", "The name of hotel can not be empty").not().isEmpty(),
         check("nameHotel").custom(existsNameHotel),
         check("description", "The description can not be empty").not().isEmpty(),
@@ -38,7 +37,6 @@ router.post(
     [
         validarJWT,
         esSystemAdmin,
-        esAdmin,
         check("idHotel", "Invalid hotel ID").isMongoId(),
         check("idBedroom", "Invalid bedroom ID").isMongoId(),
         validarCampos
