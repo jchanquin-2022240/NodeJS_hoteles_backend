@@ -10,7 +10,14 @@ export const esRoleValido = async (role = '') => {
     if (!existeRol){
         throw new Error(`El role ${role} no existe en la base datos`);
     }
-} 
+}
+
+export const existenteUsername = async (username = '') => {
+    const existeUsername = await User.findOne({ username });
+    if (existeUsername) {
+        throw new Error(`El username ${username} ya fue registrado`);
+    }
+}
 
 export const existenteEmail = async (email = '') => {
     const existeEmail = await User.findOne({email});
@@ -25,14 +32,6 @@ export const existeUsuarioById = async (id = '') => {
         throw new Error(`El ID: ${email} No existe`);
     }
 }
-
-export const validateFields = (req, res, next) => {
-    const error = validationResult(req);
-    if (!error.isEmpty()) {
-        return res.status(400).json(error);
-    }
-    next();
-};
 
 //Hoteles
 
