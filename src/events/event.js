@@ -37,7 +37,6 @@ const EventSchema = mongoose.Schema({
         ref: 'Resource'
     }],
 
-    additionalServices: [String],
 
     state: {
         type: Boolean,

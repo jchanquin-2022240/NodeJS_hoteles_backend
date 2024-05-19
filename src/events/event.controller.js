@@ -5,7 +5,7 @@ import Resource from '../resource/resource.js';
 
 export const eventsPost = async (req, res) => {
 
-    const { nameEvent, descriptionEvent, date, typeEvent, resources, additionalServices, startTime, endingTime } = req.body;
+    const { nameEvent, descriptionEvent, date, typeEvent, resources,  startTime, endingTime } = req.body;
 
     let extraMount = 1000;
     let totalPrice = 0;
@@ -25,7 +25,6 @@ export const eventsPost = async (req, res) => {
         date: eventDate,
         typeEvent,
         resources,
-        additionalServices,
         startTime,
         endingTime,
         totalPrice: formattedPrice
@@ -152,22 +151,6 @@ export const resourcesAddPost = async (req, res) => {
     });
 };
 
-export const additionalServicesPost = async (req, res) => {
-
-    const { id } = req.params;
-    const { additionalServices } = req.body;
-
-    const event = await Event.findOne({ _id: id });
-
-    event.additionalServices = event.additionalServices.concat(additionalServices);
-
-    await event.save();
-
-    res.status(200).json({
-        msg: 'Addional Services add',
-        event
-    })
-}
 
 export const resourceDelete = async (req, res) => {
     const { id } = req.params;
@@ -186,20 +169,3 @@ export const resourceDelete = async (req, res) => {
     });
 }
 
-export const additionalServiceDeletePost = async (req, res) => {
-
-    const { id } = req.params;
-    const { serviceName } = req.body;
-
-    const event = await Event.findById(id);
-
-    event.additionalServices = event.additionalServices.filter(service => service !== serviceName);
-
-    await event.save();
-
-    return res.status(200).json({
-        message: "Servicio adicional eliminado exitosamente",
-        event
-    });
-
-}

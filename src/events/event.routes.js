@@ -2,8 +2,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import {
-    additionalServiceDeletePost,
-    additionalServicesPost,
     eventDelete,
     eventPut,
     eventsGet,
@@ -47,16 +45,6 @@ router.put("/:id",
 router.get("/searching", [check("nameEvent", "You need the name of event for search one"), validarCampos], getEventForName)
 
 router.post("/resourcesAdd/:id", [check("id", "It is not a mongo id").isMongoId(),], resourcesAddPost)
-
-router.post("/addtionalServiceAdd", [check("additionalServices", "The services is empty").not().isEmpty(), validarCampos], additionalServicesPost)
-
-router.post("/deleteAddiotionalService",
-    [
-        check("serviceName", "You need the name for the service").not().isEmpty(),
-        check("eventId", "You need id for event").not().isEmpty(),
-        check("eventId", "It is not a mongo id").isMongoId(),
-        validarCampos
-    ], additionalServiceDeletePost)
 
 router.post("/deleteResource",
     [
