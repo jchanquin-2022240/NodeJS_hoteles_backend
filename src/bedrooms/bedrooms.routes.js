@@ -5,7 +5,8 @@ import {
     habitacionPost,
     habitacionGet,
     habitacionPut,
-    habitacionDelete
+    habitacionDelete,
+    habitacionById
 } from './bedrooms.controller.js';
 import {
     validarNumeroHabitacionUnico,
@@ -19,6 +20,7 @@ import { esSystemAdmin } from '../middlewares/verificar-role.js';
 const router = Router();
 
 router.get("/", habitacionGet);
+router.get("/hotel/habitaciones/:id", habitacionById);
 
 router.post("/", [
     validarJWT,
