@@ -54,8 +54,8 @@ router.post(
 router.delete(
     "/:id",
     [
-        validarJWT,
-        esAdmin,
+        // validarJWT,
+        // esAdmin,
         check("id", "No es un ID válido").isMongoId(),
         check("id").custom(existeReservacionById),
         validarCampos
@@ -66,8 +66,8 @@ router.delete(
 router.put(
     "/:id",
     [
-        validarJWT,
-        esAdmin,
+        // validarJWT,
+        // esAdmin,
         check("id", "No es un ID válido").isMongoId(),
         check("id").custom(existeReservacionById),
         validarCampos
