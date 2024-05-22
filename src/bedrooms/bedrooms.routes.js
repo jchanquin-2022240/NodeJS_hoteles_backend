@@ -37,8 +37,8 @@ habitacionPost);
 
 
 router.put("/:id", [
-    validarJWT,
-    esSystemAdmin,
+    // validarJWT,
+    // esSystemAdmin,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(validarExistenciaHabitacion),
     check("numero").custom(validarNumeroHabitacionUnico),
@@ -48,8 +48,8 @@ habitacionPut);
 
 
 router.delete("/:id", [
-    validarJWT,
-    esSystemAdmin,
+    // validarJWT,
+    // esSystemAdmin,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(validarExistenciaHabitacion),
     check("id").custom(validarReservacionesAsociadas),

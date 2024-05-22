@@ -24,7 +24,7 @@ import { esAdmin, esUser } from '../middlewares/verificar-role.js';
 const router = Router();
 
 router.get("/", /*validarJWT, esAdmin, */getReservaciones);
-router.get("/habitacion/:id", reservacionesById);
+router.get("/reservacion/habitacion/:id", reservacionesById);
 
 router.post(
     "/",
