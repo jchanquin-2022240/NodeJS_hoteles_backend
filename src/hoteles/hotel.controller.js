@@ -1,87 +1,32 @@
 import { response, request } from "express";
 import Hotel from './hotel.model.js';
-import Bedroom from '../bedrooms/bedrooms.model.js';
+import multer from 'multer';
+import upload from './multerConfig.js';
+
 
 export const createHotel = async (req, res) => {
+
     try {
 
         const { nameHotel, description, installations, location, category } = req.body;
 
-        const hotel = new Hotel({ nameHotel, description, installations, location, category });
+        const photo = req.file ? req.file.path : '';
 
-        await hotel.save();
+        const newHotel = new Hotel({
 
-        res.status(201).json({ msg: "Hotel successfully created", hotel })
+            nameHotel,
+            photo,
+            description,
+            installations,
+            location,
+            category
+        });
+
+        const savedHotel = await newHotel.save();
+
+        res.status(201).json(savedHotel);
     } catch (error) {
-
-        res.status(500).json({ msg: "Error creating hotel" });
-    }
-};
-
-export const addBedroom = async (req, res) => {
-
-    try {
-
-        const { idHotel } = req.params;
-        const { idBedroom } = req.body;
-
-        const hotel = await Hotel.findById(idHotel);
-
-        if (!hotel) {
-            return res.status(404).json({ error: 'Hotel not found' });
-        }
-
-        const bedroom = await Bedroom.findById(idBedroom);
-        if (!bedroom) {
-            return res.status(404).json({ error: 'Bedroom not found' });
-        }
-
-        if (bedroom.estado === false) {
-            return res.status(400).json({ error: 'Bedroom is not available' });
-        }
-
-        const existingHotel = await Hotel.findOne({ bedrooms: idBedroom });
-        if (existingHotel) {
-            return res.status(400).json({ error: 'Bedroom is already assigned to another hotel' });
-        }
-
-        hotel.bedrooms.push(idBedroom);
-
-        await hotel.save();
-
-        return res.status(200).json({ message: `Bedroom with ID ${idBedroom} added to hotel called ${hotel.nameHotel}` });
-    } catch (error) {
-
-        return res.status(500).json({ error: 'Error adding bedroom to hotel' });
-    }
-};
-
-export const removeBedroom = async (req, res) => {
-
-    try {
-
-        const { idHotel } = req.params;
-        const { idBedroom } = req.body;
-
-        const hotel = await Hotel.findById(idHotel);
-
-        if (!hotel) {
-            return res.status(404).json({ error: 'Hotel not found' });
-        }
-
-        const index = hotel.bedrooms.indexOf(idBedroom);
-        if (index === -1) {
-            return res.status(404).json({ error: `Bedroom not found in hotel called ${hotel.nameHotel}` });
-        }
-
-        hotel.bedrooms.splice(index, 1);
-
-        await hotel.save();
-
-        return res.status(200).json({ message: `Bedroom with ID ${idBedroom} removed from hotel called ${hotel.nameHotel}` });
-    } catch (error) {
-
-        return res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -135,22 +80,47 @@ export const getHotelsAvailable = async (req, res) => {
     }
 }
 
+export const getHotelById = async (req, res) => {
+
+    try {
+        
+        const { id } = req.params;
+
+        const hotel = await Hotel.findById(id);
+
+        if (!hotel) {
+
+            return res.status(404).json({ message: 'Hotel not found' });
+        }
+
+        res.status(200).json(hotel);
+    } catch (error) {
+
+        res.status(500).json({ error: 'Error getting hotel details' });
+    }
+};
+
 export const updateHotel = async (req, res) => {
 
     try {
 
         const { id } = req.params;
-        const { _id, ...remain } = req.body;
+        const { nameHotel, description, installations, location, category } = req.body;
+        const photo = req.file ? req.file.path : undefined;
 
-        await Hotel.findByIdAndUpdate(id, remain);
+        const updatedFields = { nameHotel, description, installations, location, category };
+        if (photo) updatedFields.photo = photo;
 
-        const hotel = await Hotel.findOne({ _id: id });
+        const updatedHotel = await Hotel.findByIdAndUpdate(id, updatedFields, { new: true });
 
-        res.status(200).json({ msg: 'Hotel has been update', hotel })
+        if (!updatedHotel) {
+            return res.status(404).json({ message: 'Hotel not found' });
+        }
 
+        res.status(200).json(updatedHotel);
     } catch (error) {
 
-        res.status(500).json({ error: 'Error when updating hotel' });
+        res.status(500).json({ message: error.message });
     }
 }
 

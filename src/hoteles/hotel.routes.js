@@ -6,21 +6,22 @@ import {
     getHotelsAvailable,
     updateHotel,
     deleteHotel,
-    addBedroom,
-    removeBedroom
+    getHotelById
 } from "./hotel.controller.js";
 import { existsHotel, existsNameHotel, existsLocation, hotelStatus } from "../helpers/db-validators.js";
+import upload from './multerConfig.js';
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
-import { esSystemAdmin, esAdmin} from "../middlewares/verificar-role.js";
+import { esSystemAdmin } from "../middlewares/verificar-role.js";
 
 const router = Router();
 
 router.post(
-    "/",
+    "/create",
+    upload.single('photo'),
     [
-        // validarJWT,
-        // esSystemAdmin,
+        //validarJWT,
+        //esSystemAdmin,
         check("nameHotel", "The name of hotel can not be empty").not().isEmpty(),
         check("nameHotel").custom(existsNameHotel),
         check("description", "The description can not be empty").not().isEmpty(),
@@ -30,48 +31,30 @@ router.post(
         validarCampos
     ],
     createHotel
-)
-
-router.post(
-    "/:idHotel/bedroom",
-    [
-        // validarJWT,
-        // esSystemAdmin,
-        check("idHotel", "Invalid hotel ID").isMongoId(),
-        check("idBedroom", "Invalid bedroom ID").isMongoId(),
-        validarCampos
-    ],
-    addBedroom
-)
-
-router.delete(
-    "/:idHotel/bedroom",
-    [
-        // validarJWT,
-        // esSystemAdmin,
-        check("idHotel", "Invalid hotel ID").isMongoId(),
-        check("idBedroom", "Invalid bedroom ID").isMongoId(),
-        validarCampos
-    ],
-    removeBedroom
-)
+);
 
 router.get(
     "/",
-    getHotels
-)
+    getHotelsAvailable
+);
 
 router.get(
     "/hotels",
     validarJWT,
-    getHotelsAvailable
-)
+    getHotels
+);
+
+router.get(
+    "/:id",
+    getHotelById
+);
 
 router.put(
-    "/:id",
+    "/update/:id",
+    upload.single('photo'),
     [
-        validarJWT,
-        esSystemAdmin,
+        //validarJWT,
+        //esSystemAdmin,
         check("id", "Invalid hotel ID").isMongoId(),
         check("id").custom(existsHotel),
         check("nameHotel").custom(existsNameHotel),
@@ -79,19 +62,19 @@ router.put(
         validarCampos
     ],
     updateHotel
-)
+);
 
 router.delete(
     "/:id",
     [
-        validarJWT,
-        esSystemAdmin,
+        //validarJWT,
+        //esSystemAdmin,
         check("id", "Invalid hotel ID").isMongoId(),
         check("id").custom(existsHotel),
         check("id").custom(hotelStatus),
         validarCampos
     ],
     deleteHotel
-)
+);
 
 export default router;

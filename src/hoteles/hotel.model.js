@@ -6,6 +6,9 @@ const HotelSchema = Schema({
         required: [true, 'The name hotel is required'],
         unique: true
     },
+    photo: {
+        type: String
+    },
     description: {
         type: String,
         required: [true, 'A description is required'],
@@ -21,15 +24,8 @@ const HotelSchema = Schema({
     },
     category: {
         type: String,
-        enum: ["⭐", "⭐⭐","⭐⭐⭐","⭐⭐⭐⭐","⭐⭐⭐⭐⭐"],
+        enum: ["⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"],
         default: "⭐"
-    },
-    bedrooms: {
-        type: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Bedroom'
-        }],
-        default: []
     },
     status: {
         type: Boolean,
