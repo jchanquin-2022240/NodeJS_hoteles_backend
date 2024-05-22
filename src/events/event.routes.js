@@ -24,8 +24,8 @@ router.post(
         check("descriptionEvent", "The event need one description").not().isEmpty(),
         check("date", "The evenet need one date").not().isEmpty(),
         check("date", "The format is incorrect").not().isDate(),
-        check('startTime', 'Invalid start time format').matches(/^([01]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$/),
-        check('endingTime', 'Invalid ending time format').matches(/^([01]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$/),
+        check('startTime', 'Invalid start time format').matches(/^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/),
+        check('endingTime', 'Invalid ending time format').matches(/^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/),
         check("typeEvent", "The event need one type").not().isEmpty(),
         validarCampos
     ], eventsPost)
@@ -37,8 +37,8 @@ router.delete("/:id", [check("id", "It is not an id not valid").isMongoId(), val
 router.put("/:id",
     [
         check("nameEvent").custom(existingNameEvent),
-        check('startTime', 'Invalid start time format').matches(/^([01]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$/),
-        check('endingTime', 'Invalid ending time format').matches(/^([01]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$/),
+        check('startTime', 'Invalid start time format').matches(/^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/),
+        check('endingTime', 'Invalid ending time format').matches(/^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/),
         check("id", "It is not a mongo id").isMongoId(),
         validarCampos], eventPut)
 
@@ -46,12 +46,12 @@ router.get("/searching", [check("nameEvent", "You need the name of event for sea
 
 router.post("/resourcesAdd/:id", [check("id", "It is not a mongo id").isMongoId(),], resourcesAddPost)
 
-router.post("/deleteResource",
+router.post("/deleteResource/:id",
     [
         check("resourceId", "You need id for resource").not().isEmpty(),
-        check("eventId", "You need id for event").not().isEmpty(),
+        check("id", "You need id for event").not().isEmpty(),
         check("resourceId", "It is not a mongo id").isMongoId(),
-        check("eventId", "It is not a mongo id").isMongoId(),
+        check("id", "It is not a mongo id").isMongoId(),
         validarCampos
     ], resourceDelete)
 

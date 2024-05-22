@@ -17,7 +17,6 @@ export const eventsPost = async (req, res) => {
 
         totalPrice = extraMount + resource.price;
     }
-    const formattedPrice = totalPrice.toFixed(2) + "Q";
 
     const event = new Event({
         nameEvent,
@@ -27,7 +26,7 @@ export const eventsPost = async (req, res) => {
         resources,
         startTime,
         endingTime,
-        totalPrice: formattedPrice
+        totalPrice
     });
 
     await event.save();
@@ -130,20 +129,16 @@ export const resourcesAddPost = async (req, res) => {
     const { resources } = req.body;
 
     let event = await Event.findOne({ _id: id });
-    const numericTotalPrice = parseFloat(event.totalPrice.match(/\d+\.\d+/)[0]) || 0;
-    console.log(numericTotalPrice)
 
-    let totalPrice = numericTotalPrice;
+    let totalPrice = parseFloat(event.totalPrice);
     for (const resourceId of resources) {
         const resource = await Resource.findById(resourceId);
         totalPrice += resource.price;
     }
 
-    const priceTotal = totalPrice.toString() + ".00Q";
-
     event.resources = event.resources.concat(resources);
 
-    const eventLast = await Event.findByIdAndUpdate(id, { totalPrice: priceTotal, resources: event.resources }, { new: true });
+    const eventLast = await Event.findByIdAndUpdate(id, { totalPrice: totalPrice, resources: event.resources }, { new: true });
 
     res.status(200).json({
         msg: 'Resource add',
@@ -151,15 +146,18 @@ export const resourcesAddPost = async (req, res) => {
     });
 };
 
-
 export const resourceDelete = async (req, res) => {
     const { id } = req.params;
     const { resourceId } = req.body;
 
     const event = await Event.findById(id);
 
+    const resource = await Resource.findById(resourceId);
+
 
     event.resources = event.resources.filter(resource => resource.toString() !== resourceId);
+    event.totalPrice -= resource.price;
+
 
     await event.save();
 

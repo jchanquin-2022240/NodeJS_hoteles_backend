@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 
 const EventSchema = mongoose.Schema({
-    nameEvent: {
+    nameEvent:{
         type: String,
         required: [true, 'The event need one name']
     },
@@ -28,7 +28,7 @@ const EventSchema = mongoose.Schema({
     },
     typeEvent: {
         type: String,
-        enum: ['Conference', 'Wedding', 'Meeting', 'Other'],
+        enum: ['Conferencia', 'Casamiento', 'Reunion', 'Otro'],
         required: [true, 'The event need one type']
     },
 
@@ -36,6 +36,12 @@ const EventSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Resource'
     }],
+
+    totalPrice: {
+        type: String,
+        required: true,
+
+    },
 
 
     state: {
