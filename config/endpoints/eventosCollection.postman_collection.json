@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "ad17b290-1cab-4580-9ac8-ca7d96ddbaa0",
+		"name": "eventosCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32791973"
+	},
+	"item": [
+		{
+			"name": "addEvento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nameEvent\": \"Reunión de compas\",\r\n    \"descriptionEvent\": \"Es una reunión de amigos de la secundaria\",\r\n    \"date\": \"20-05-2024\",\r\n    \"typeEvent\": \"Meeting\",\r\n    \"resources\": \"66454ea2990d2957999d0969\",\r\n    \"additionalServices\": \"none\",\r\n    \"startTime\": \"10:30:00\",\r\n    \"endingTime\": \"11:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"event"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

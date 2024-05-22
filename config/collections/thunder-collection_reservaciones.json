@@ -1,0 +1,33 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "reservaciones",
+    "collectionId": "a3c7f838-f3f8-420b-bcb1-410088f7c2d0",
+    "dateExported": "2024-05-06T22:55:06.277Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b6b4644a-8327-488f-83a4-ff8e5a97a53d",
+            "colId": "a3c7f838-f3f8-420b-bcb1-410088f7c2d0",
+            "containerId": "",
+            "name": "post reservaciones",
+            "url": "http://localhost:3000/hoteles/v1/reservacion",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-05-06T21:56:11.509Z",
+            "modified": "2024-05-06T22:24:22.578Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjMxNTM5ZTZhNjBlNTI2MTExN2I5ZmYiLCJpYXQiOjE3MTUwMzEyNDMsImV4cCI6MTcxNjgzMTI0M30.b05wO7aVkXXu6ecckvUzWVqba9ZpFxHNiC1U0qaKZiw"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"habitacionId\": \"663952cc876fd7fefd0b8b40\",\n  \"fechaInicio\": \"06-05-2024\",\n  \"fechaFin\": \"06-07-2024\",\n  \"huespedes\": 1\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "UeiPFzQW4qY5M3bH0Ruv8kPj7w0z2Si0KaRb_KszKmSrx9sn-I522H5-lf8RhQG2C3S2QVVxWTc4dCS-kC-ssA"
+}

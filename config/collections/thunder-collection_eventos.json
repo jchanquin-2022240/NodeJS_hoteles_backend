@@ -1,0 +1,28 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "eventos",
+    "collectionId": "1409c17d-e493-4cc2-907f-812f14e2d81c",
+    "dateExported": "2024-05-06T22:55:11.309Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "f38e2b74-08af-4d64-ae0b-22c822d1ffa4",
+            "colId": "1409c17d-e493-4cc2-907f-812f14e2d81c",
+            "containerId": "",
+            "name": "post eventos",
+            "url": "http://localhost:3000/hoteles/v1/event",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-05-06T22:25:50.110Z",
+            "modified": "2024-05-06T22:32:32.555Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nameEvent\": \"Reunión de compas\",\n  \"descriptionEvent\":\"Es una reunión de amigos de la secundaria\",\n  \"date\": \"06-09-2024\",\n  \"typeEvent\": \"Meeting\",\n  \"resources\": [\"663144aaf712c9036c68ec9c\"],\n  \"additionalServices\": \"nada\",\n  \"startTime\": \"10:30:00\",\n  \"endingTime\": \"11:00:00\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "4vxo4vPkYbj0URfWOWI45v7XaDko_H718QcdVR_Ff572RVk6gpdTM6dnbTHo0nc3N1wn_JKVY1fdj3FM_ZIX0w"
+}
