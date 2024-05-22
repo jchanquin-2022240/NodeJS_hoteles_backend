@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"habitacionId\": \"6645416352ef4a9ebe8b5d45\",\r\n    \"fechaInicio\": \"05-18-2024\",\r\n    \"fechaFin\": \"05-19-2024\",\r\n    \"huespedes\": 3\r\n}",
+					"raw": "{\r\n    \"habitacionId\": \"664971f7e33309b98e7d273f\",\r\n    \"fechaInicio\": \"05-23-2024\",\r\n    \"fechaFin\": \"05-25-2024\",\r\n    \"huespedes\": 2\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,6 +59,29 @@
 						"v1",
 						"reservacion",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bys",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hoteles/v1/reservacion/habitacion/6645418652ef4a9ebe8b5d4c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hoteles",
+						"v1",
+						"reservacion",
+						"habitacion",
+						"6645418652ef4a9ebe8b5d4c"
 					]
 				}
 			},

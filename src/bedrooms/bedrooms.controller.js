@@ -95,3 +95,26 @@ export const habitacionGet = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+export const habitacionById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const total = await Habitacion.countDocuments({ hotel: id });
+        // Buscar todas las habitaciones que pertenezcan al hotel con el ID proporcionado
+        const habitaciones = await Habitacion.find({ hotel: id });
+
+        if (habitaciones.length === 0) {
+            return res.status(404).json({ error: 'No se encontraron habitaciones para este hotel' });
+        }
+
+        res.status(200).json({
+            total,
+            habitaciones
+        });
+    } catch (error) {
+        console.error('Error fetching habitaciones by hotel ID:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+};
+
+

@@ -4,7 +4,8 @@ import {
     reservacionPost,
     getReservaciones,
     reservacionPut,
-    reservacionDelete
+    reservacionDelete,
+    reservacionesById
 } from './reservations.controller.js';
 
 import {
@@ -12,7 +13,8 @@ import {
     validarNumeroHuespedes,
     validarCapacidad,
     validarDisponibilidad,
-    existeReservacionById
+    existeReservacionById,
+    
 } from "../helpers/db-validators.js";
 
 import { validarCampos } from '../middlewares/validar-campos.js';
@@ -21,13 +23,14 @@ import { esAdmin, esUser } from '../middlewares/verificar-role.js';
 
 const router = Router();
 
-router.get("/", validarJWT, esAdmin, getReservaciones);
+router.get("/", /*validarJWT, esAdmin, */getReservaciones);
+router.get("/habitacion/:id", reservacionesById);
 
 router.post(
     "/",
     [
-        validarJWT,
-        esUser,
+        /*validarJWT,
+        esUser,*/
         check("habitacionId", "El ID de la habitación es obligatorio").not().isEmpty(),
         check("habitacionId").custom(validarCapacidad),
         check("fechaInicio", "La fecha de inicio es obligatoria").not().isEmpty(),

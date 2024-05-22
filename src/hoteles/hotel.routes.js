@@ -58,8 +58,6 @@ router.delete(
 
 router.get(
     "/",
-    validarJWT,
-    esSystemAdmin,
     getHotels
 )
 
