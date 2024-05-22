@@ -108,3 +108,48 @@ export const reservacionDelete = async (req, res) => {
         res.status(500).json({ error: 'Error al eliminar la reservación' });
     }
 };
+
+export const reservacionesById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const total = await Reservacion.countDocuments({ habitacion: id });
+        const reservaciones = await Reservacion.find({ habitacion: id });
+
+        if (reservaciones.length === 0) {
+            return res.status(404).json({ error: 'No se encontraron reservaciones para esta habitación' });
+        }
+
+        res.status(200).json({
+            total,
+            reservaciones
+        });
+    } catch (error) {
+        console.error('Error al obtener reservaciones por ID de habitación:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+};
+
+/*
+export const habitacionById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const total = await Habitacion.countDocuments({ hotel: id });
+        // Buscar todas las habitaciones que pertenezcan al hotel con el ID proporcionado
+        const habitaciones = await Habitacion.find({ hotel: id });
+
+        if (habitaciones.length === 0) {
+            return res.status(404).json({ error: 'No se encontraron habitaciones para este hotel' });
+        }
+
+        res.status(200).json({
+            total,
+            habitaciones
+        });
+    } catch (error) {
+        console.error('Error fetching habitaciones by hotel ID:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+};
+
+
+*/
