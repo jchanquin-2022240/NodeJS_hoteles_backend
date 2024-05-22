@@ -20,11 +20,11 @@ import { esSystemAdmin } from '../middlewares/verificar-role.js';
 const router = Router();
 
 router.get("/", habitacionGet);
-router.get("/hotel/habitaciones/:id", habitacionById);
+router.get("/hotel/:id", habitacionById);
 
 router.post("/", [
-    validarJWT,
-    esSystemAdmin,
+    // validarJWT,
+    // esSystemAdmin,
     check("numero", "El número de habitación es obligatorio").not().isEmpty(),
     check("numero").custom(validarNumeroHabitacionUnico),
     check("tipo", "El tipo de habitación es obligatorio").not().isEmpty(),
